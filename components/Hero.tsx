@@ -12,8 +12,9 @@ export default function Hero() {
         <Image
           src={KrishnaMallick}  // Using the imported image
           alt="Krishna Mallick"
-          layout="fill"
-          objectFit="cover"
+          layout="fill"  // Fills the parent container
+          objectFit="cover"  // Ensures the image covers the container without distortion
+          className="rounded-l-lg"  // Optional: add a rounded left corner if desired
         />
       </div>
 
@@ -71,4 +72,5 @@ export default function Hero() {
     </section>
   );
 }
+
 
