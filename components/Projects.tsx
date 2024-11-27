@@ -1,12 +1,12 @@
-import Image from 'next/image'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
+import Image from 'next/image';  // <-- Added this import
 
 // Skills object with icons
 const skills = {
@@ -53,7 +53,6 @@ type Skill = { name: string; image: string };
 // Function to find icon for a technology
 const getTechnologyIcon = (tech: string): string | null => {
   for (const category in skills) {
-    // TypeScript now knows that category is one of 'Languages', 'Tools', or 'DevOps'
     const categoryKey = category as SkillCategory;
     const skill = (skills[categoryKey] as Skill[]).find((item) => item.name === tech);
     if (skill) return skill.image;
@@ -145,4 +144,3 @@ export default function Projects() {
     </section>
   );
 }
-

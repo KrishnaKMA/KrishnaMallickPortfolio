@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Education() {
@@ -62,7 +65,7 @@ export default function Education() {
       issuedBy: 'Sertifier',
       url: 'https://verified.sertifier.com/en/verify/84258725943850/?ref=email',
       issuedDate: 'November 2024',
-      image: '/Images/BrilliantCatalystCerti.png', // Add the image here
+      image: '/Images/BrilliantCatalystCerti.png',
     },
   ];
 
@@ -78,6 +81,9 @@ export default function Education() {
                 {edu.school}, {edu.location}
               </p>
               <p className="text-gray-500">{edu.period}</p>
+              <p className="text-gray-700 mt-4">
+                Expected to graduate in {edu.period}, focusing on software engineering and development.
+              </p>
             </div>
           ))}
         </div>
@@ -93,36 +99,6 @@ export default function Education() {
           </ul>
         </div>
 
-        <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">Technical Skills</h3>
-          {Object.entries(skills).map(([category, skillList]) => (
-            <div key={category} className="mb-4">
-              <h4 className="text-xl font-medium mb-2">{category}</h4>
-              <div className="flex flex-wrap gap-2">
-                {skillList.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="flex items-center bg-white rounded-full px-3 py-1 shadow-sm"
-                    style={{
-                      width: '150px', // Set a consistent width
-                      height: '40px', // Set a consistent height
-                    }}
-                  >
-                    <Image
-                      src={skill.image}
-                      alt={`${skill.name} logo`}
-                      width={20}
-                      height={20}
-                      className="mr-2"
-                    />
-                    <span className="text-sm font-semibold text-gray-700">{skill.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* Certification Section */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4">Certifications</h3>
@@ -131,16 +107,13 @@ export default function Education() {
               <h4 className="text-xl font-semibold">{cert.name}</h4>
               <p className="text-gray-600">Issued by: {cert.issuedBy}</p>
               <p className="text-gray-500">Issued on: {cert.issuedDate}</p>
-              {/* Image for the certification */}
-              <div className="my-4">
-                <Image
-                  src={cert.image}
-                  alt="Certification Image"
-                  width={200}
-                  height={120}
-                  className="rounded-lg"
-                />
-              </div>
+              <Image
+                src={cert.image}
+                alt="Certification Image"
+                width={200}
+                height={120}
+                className="rounded-lg mt-4"
+              />
               <a
                 href={cert.url}
                 target="_blank"
@@ -156,6 +129,7 @@ export default function Education() {
     </section>
   );
 }
+
 
 
 

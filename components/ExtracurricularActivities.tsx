@@ -7,10 +7,8 @@ import Image from 'next/image' // Ensure this import is present
 import KarateImage from '../public/images/KaratePhoto.png' // Importing the Karate image
 import BoxingImage from '../public/images/GGG.webp' // Importing the Boxing image
 import GymImage from '../public/images/GymPhoto.jpeg' // Importing the Gym image
-import GamingImage from '../public/images/gaming.jpg' // Importing the Gaming image
-import MusicImage from '../public/images/music.jpg' // Importing the Music image
 import AstronomyImage from '../public/images/Astronomy.jpg' // Importing the Astronomy image
-import GamingVideo from '../public/videos/GamingClip.mp4' // Importing the Gaming video
+import GamingClip from '../public/videos/GamingClip.mp4'; // Importing the Gaming video
 
 interface ExtracurricularActivity {
   name: string
@@ -49,14 +47,14 @@ export default function ExtracurricularActivities() {
       name: "Gaming",
       description: "Passionate about gaming, exploring new titles, and competing in various online multiplayer games.",
       icon: <Activity className="w-6 h-6" />,
-      image: GamingImage,
+      image: "", // No image for gaming
       additionalInfo: "Gaming is a major hobby for me, and I enjoy playing various genres from strategy to FPS. I also participate in online tournaments and enjoy connecting with the gaming community.",
     },
     {
       name: "Music",
       description: "I play various instruments and have a deep love for both creating and listening to music.",
       icon: <Activity className="w-6 h-6" />,
-      image: MusicImage,
+      image: "", // No image for music
       additionalInfo: "I play guitar and piano, and I also write and produce my own music. I love exploring different genres and experimenting with sounds in my free time, below is one of my favourite acoustic pieces.",
     },
     {
@@ -96,18 +94,16 @@ export default function ExtracurricularActivities() {
               >
                 <p className="text-gray-700">{activity.additionalInfo}</p>
                 {activity.name === "Gaming" ? (
-                  // Use the imported Gaming video here
                   <video
                     controls
                     width="100%"
                     height="400"
                     className="rounded-lg"
                   >
-                    <source src={GamingVideo} type="video/mp4" />
+                    <source src={GamingClip} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 ) : activity.name === "Music" ? (
-                  // Embed YouTube video for the Music activity
                   <iframe
                     width="100%"
                     height="400"
@@ -119,7 +115,7 @@ export default function ExtracurricularActivities() {
                   ></iframe>
                 ) : (
                   <Image
-                    src={activity.image}
+                    src={activity.image || '/default-image.jpg'} // Fallback image if none exists
                     alt={`${activity.name} image`}
                     width={400}
                     height={400}
