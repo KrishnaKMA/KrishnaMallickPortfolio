@@ -46,10 +46,16 @@ const skills = {
   ],
 };
 
+// Define the type of the skills object
+type SkillCategory = keyof typeof skills;
+type Skill = { name: string; image: string };
+
 // Function to find icon for a technology
-const getTechnologyIcon = (tech) => {
+const getTechnologyIcon = (tech: string): string | null => {
   for (const category in skills) {
-    const skill = skills[category].find((item) => item.name === tech);
+    // TypeScript now knows that category is one of 'Languages', 'Tools', or 'DevOps'
+    const categoryKey = category as SkillCategory;
+    const skill = (skills[categoryKey] as Skill[]).find((item) => item.name === tech);
     if (skill) return skill.image;
   }
   return null; // Return null if no icon is found

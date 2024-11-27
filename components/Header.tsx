@@ -1,44 +1,41 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Link } from 'react-scroll'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-scroll';
 
 export default function Header() {
-  // State to track the visibility of the navbar and scroll position
-  const [isVisible, setIsVisible] = useState(true)  // Initially visible when at the top
-  const [scrollingDown, setScrollingDown] = useState(false)
+  // State to track the visibility of the navbar
+  const [isVisible, setIsVisible] = useState(true); // Initially visible when at the top
 
-  // Track scroll position and determine if scrolling down
+  // Function to track scroll position
   const handleScroll = () => {
     if (window.scrollY === 0) {
-      setIsVisible(true)  // Show navbar at the top
+      setIsVisible(true); // Show navbar at the top
     } else if (window.scrollY > 0) {
-      setIsVisible(false)  // Hide navbar when scrolling down
+      setIsVisible(false); // Hide navbar when scrolling down
     }
-  }
+  };
 
   // Function to check cursor position and update navbar visibility
-  const handleMouseMove = (e) => {
-    if (e.clientY < 100) {  // If the cursor is within 100px from the top of the screen
-      setIsVisible(true)  // Show navbar
+  const handleMouseMove = (e: MouseEvent) => {
+    if (e.clientY < 100) {
+      setIsVisible(true); // Show navbar
     } else if (window.scrollY > 0) {
-      setIsVisible(false)  // Hide navbar when not at the top and cursor moves down
+      setIsVisible(false); // Hide navbar
     }
-  }
+  };
 
   useEffect(() => {
-    // Listen for scroll events to track when the page is scrolled
-    window.addEventListener('scroll', handleScroll)
+    // Listen for scroll and mousemove events
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousemove', handleMouseMove);
 
-    // Listen for mouse movement to detect cursor position
-    document.addEventListener('mousemove', handleMouseMove)
-
-    // Clean up event listeners on component unmount
+    // Clean up event listeners on unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      document.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [])
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   return (
     <header
@@ -63,5 +60,5 @@ export default function Header() {
         </ul>
       </nav>
     </header>
-  )
+  );
 }
