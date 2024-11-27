@@ -1,4 +1,8 @@
 import Image from 'next/image';
+import KrishnaMallick from '../public/images/KrishnaMallick.jpeg';  // Importing the image
+import EmailIcon from '../public/images/EmailIcon.png';  // Importing the email icon
+import LinkedinIcon from '../public/images/LinkedinIcon.webp';  // Importing the LinkedIn icon
+import GithubIcon from '../public/images/GithubIcon.png';  // Importing the GitHub icon
 
 export default function Hero() {
   return (
@@ -6,7 +10,7 @@ export default function Hero() {
       {/* Image - 2/3 width */}
       <div className="w-2/3 relative">
         <Image
-          src="/Images/KrishnaMallick.jpeg"
+          src={KrishnaMallick}  // Using the imported image
           alt="Krishna Mallick"
           layout="fill"
           objectFit="cover"
@@ -28,7 +32,7 @@ export default function Hero() {
             aria-label="Email"
           >
             <Image
-              src="/Images/EmailIcon.png" // Replace with your email icon image path
+              src={EmailIcon}  // Using the imported email icon
               alt="Email Icon"
               width={40}
               height={40}
@@ -42,7 +46,7 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <Image
-              src="/Images/LinkedinIcon.webp" // Replace with your LinkedIn icon image path
+              src={LinkedinIcon}  // Using the imported LinkedIn icon
               alt="LinkedIn Icon"
               width={40}
               height={40}
@@ -56,7 +60,7 @@ export default function Hero() {
             aria-label="GitHub"
           >
             <Image
-              src="/Images/GithubIcon.png" // Replace with your GitHub icon image path
+              src={GithubIcon}  // Using the imported GitHub icon
               alt="GitHub Icon"
               width={40}
               height={40}
