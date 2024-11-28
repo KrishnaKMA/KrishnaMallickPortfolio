@@ -14,7 +14,7 @@ export default function Experience() {
       location: 'Oshawa, ON',
       logo: '/images/ot-space.png', // Unique image for this experience
       description: [
-        'Apart of the Software depart whos main focus is to sotre data from launches and create predication models using various different codes, ',
+        'Apart of the Software depart whos main focus is to store data from launches and create prediction models using various different coding languages. ', 'Iam also looking towrds on helping out in the avionics department aswell and getting experience when it comes to embedded systems in rockets'
       ],
     },
     {
