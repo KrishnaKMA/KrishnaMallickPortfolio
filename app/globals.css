@@ -71,9 +71,4 @@ body {
   }
 }
 
-/* This hides the vertical scrollbar on mobile devices */
-@media (max-width: 768px) {
-  body {
-    overflow-y: hidden; /* Hide the vertical scrollbar on mobile */
-  }
-}
+
