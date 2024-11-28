@@ -14,7 +14,8 @@ export default function Experience() {
       location: 'Oshawa, ON',
       logo: '/images/ot-space.png', // Unique image for this experience
       description: [
-        'Apart of the Software depart whos main focus is to store data from launches and create prediction models using various different coding languages. ', 'Iam also looking towrds on helping out in the avionics department aswell and getting experience when it comes to embedded systems in rockets'
+        'Apart of the Software depart whos main focus is to store data from launches and create prediction models using various different coding languages. ', 
+        'Iam also looking towrds on helping out in the avionics department aswell and getting experience when it comes to embedded systems in rockets'
       ],
     },
     {
@@ -64,7 +65,7 @@ export default function Experience() {
             <div 
               key={index} 
               className="relative overflow-hidden bg-gray-100 rounded-lg shadow-md transition-all duration-300 ease-in-out"
-              style={{ height: hoveredIndex === index ? '400px' : '120px' }}
+              style={{ height: hoveredIndex === index ? '400px' : '160px' }} // Increased the height for mobile
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -85,9 +86,7 @@ export default function Experience() {
                 </div>
               </div>
               <div 
-                className={`absolute inset-0 bg-white p-6 transition-all duration-300 ease-in-out ${
-                  hoveredIndex === index ? 'translate-y-[120px]' : 'translate-y-full'
-                }`}
+                className={`absolute inset-0 bg-white p-6 transition-all duration-300 ease-in-out ${hoveredIndex === index ? 'translate-y-[120px]' : 'translate-y-full'}`}
               >
                 <h4 className="text-lg font-semibold mb-2">Responsibilities & Achievements:</h4>
                 <ul className="list-disc list-inside text-gray-700 space-y-2 overflow-y-auto max-h-[220px]">
@@ -103,4 +102,3 @@ export default function Experience() {
     </section>
   )
 }
-
