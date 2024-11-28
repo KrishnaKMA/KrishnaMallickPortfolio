@@ -1,8 +1,4 @@
 import Image from 'next/image';
-import KrishnaMallick from 'images/KrishnaMallick.jpeg';  // Importing the image
-import EmailIcon from 'images/EmailIcon.png';  // Importing the email icon
-import LinkedinIcon from 'images/LinkedinIcon.webp';  // Importing the LinkedIn icon
-import GithubIcon from 'images/GithubIcon.png';  // Importing the GitHub icon
 
 export default function Hero() {
   return (
@@ -10,7 +6,7 @@ export default function Hero() {
       {/* Image - 2/3 width */}
       <div className="w-2/3 relative">
         <Image
-          src={KrishnaMallick}  // Using the imported image
+          src="/images/KrishnaMallick.jpeg"  // Corrected path
           alt="Krishna Mallick"
           layout="fill"  // Fills the parent container
           objectFit="cover"  // Ensures the image covers the container without distortion
@@ -23,7 +19,7 @@ export default function Hero() {
         <h1 className="text-4xl font-bold mb-4">Krishna Mallick</h1>
         <h2 className="text-2xl text-gray-600 mb-8">Software Engineering Student</h2>
         <p className="text-gray-700 mb-6">
-          Passionate software engineering student with experience in embedded systems, web development, and machine programming. 
+          Passionate software engineering student with experience in embedded systems, web development, and machine programming.
           Skilled in multiple programming languages and frameworks, with a focus on creating efficient and innovative solutions.
         </p>
         <div className="mt-8 flex justify-center md:justify-start space-x-4">
@@ -33,7 +29,7 @@ export default function Hero() {
             aria-label="Email"
           >
             <Image
-              src={EmailIcon}  // Using the imported email icon
+              src="/images/EmailIcon.png"  // Corrected path
               alt="Email Icon"
               width={40}
               height={40}
@@ -47,7 +43,7 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <Image
-              src={LinkedinIcon}  // Using the imported LinkedIn icon
+              src="/images/LinkedinIcon.webp"  // Corrected path
               alt="LinkedIn Icon"
               width={40}
               height={40}
@@ -61,7 +57,7 @@ export default function Hero() {
             aria-label="GitHub"
           >
             <Image
-              src={GithubIcon}  // Using the imported GitHub icon
+              src="/images/GithubIcon.png"  // Corrected path
               alt="GitHub Icon"
               width={40}
               height={40}

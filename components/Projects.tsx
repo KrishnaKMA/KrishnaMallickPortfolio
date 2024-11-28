@@ -6,43 +6,43 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from 'next/image';  // <-- Added this import
+import Image from 'next/image';
 
 // Skills object with icons
 const skills = {
   Languages: [
-    { name: 'C', image: 'images/C.png' },
-    { name: 'C++', image: 'images/cpp.png' },
-    { name: 'Swift', image: 'images/swift.png' },
-    { name: 'Flutter', image: 'images/flutter.png' },
-    { name: 'Java', image: 'images/Java.png' },
-    { name: 'JavaScript', image: 'images/JavaScript.png' },
-    { name: 'TypeScript', image: 'images/TypeScript.png' },
-    { name: 'Python', image: 'images/Python.png' },
-    { name: 'HTML', image: 'images/HTML.png' },
-    { name: 'CSS', image: 'images/CSS.svg' },
-    { name: 'SQL', image: 'images/SQL.png' },
-    { name: 'Bash', image: 'images/Bash.png' },
-    { name: 'PHP', image: 'images/PHP.png' },
+    { name: 'C', image: '/images/C.png' },
+    { name: 'C++', image: '/images/cpp.png' },
+    { name: 'Swift', image: '/images/swift.png' },
+    { name: 'Flutter', image: '/images/Flutter.png' },
+    { name: 'Java', image: '/images/Java.png' },
+    { name: 'JavaScript', image: '/images/JavaScript.png' },
+    { name: 'TypeScript', image: '/images/TypeScript.png' },
+    { name: 'Python', image: '/images/Python.png' },
+    { name: 'HTML', image: '/images/HTML.png' },
+    { name: 'CSS', image: '/images/CSS.svg' },
+    { name: 'SQL', image: '/images/SQL.png' },
+    { name: 'Bash', image: '/images/Bash.png' },
+    { name: 'PHP', image: '/images/PHP.png' },
   ],
   Tools: [
-    { name: 'SwiftUI', image: 'images/SwiftUI.png' },
-    { name: 'UIKit', image: 'images/UIkit.webp' },
-    { name: 'Charles', image: 'images/Charles.webp' },
-    { name: 'Node.js', image: 'images/NodeJS.webp' },
-    { name: 'Express', image: 'images/Express.png' },
-    { name: 'Firebase', image: 'images/Firebase.svg' },
-    { name: 'Angular', image: 'images/Angular.png' },
-    { name: 'React', image: 'images/React.png' },
-    { name: 'Nextion', image: 'images/Nextion.png' },
-    { name: 'Next.js', image: 'images/NextJS.svg' },
+    { name: 'SwiftUI', image: '/images/SwiftUI.png' },
+    { name: 'UIKit', image: '/images/UIkit.webp' },
+    { name: 'Charles', image: '/images/Charles.webp' },
+    { name: 'Node.js', image: '/images/NodeJS.webp' },
+    { name: 'Express', image: '/images/Express.png' },
+    { name: 'Firebase', image: '/images/Firebase.svg' },
+    { name: 'Angular', image: '/images/Angular.png' },
+    { name: 'React', image: '/images/React.png' },
+    { name: 'Nextion', image: '/images/Nextion.png' },
+    { name: 'Next.js', image: '/images/NextJS.svg' },
   ],
   DevOps: [
-    { name: 'Git', image: 'images/Git.png' },
-    { name: 'GitHub Actions', image: 'images/GithubActions.png' },
-    { name: 'Docker', image: 'images/Docker.svg' },
-    { name: 'CI/CD Pipelines', image: 'images/CICDPipelines.png' },
-    { name: 'AWS', image: 'images/AWS.png' },
+    { name: 'Git', image: '/images/Git.png' },
+    { name: 'GitHub Actions', image: '/images/GithubActions.png' },
+    { name: 'Docker', image: '/images/Docker.svg' },
+    { name: 'CI/CD Pipelines', image: '/images/CICDPipelines.png' },
+    { name: 'AWS', image: '/images/AWS.png' },
   ],
 };
 
@@ -109,13 +109,13 @@ export default function Projects() {
                       <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                       <p className="text-gray-600 mb-4">{project.date}</p>
                       <p className="text-gray-700 mb-4">{project.description}</p>
-                      <div className="flex flex-wrap gap-2 mt-4">
+                      <div className="flex flex-wrap gap-4 mt-4">
                         {project.technologies.map((tech, idx) => {
                           const icon = getTechnologyIcon(tech);
                           return (
                             <div
                               key={idx}
-                              className="flex items-center bg-white rounded-full px-3 py-1 shadow-sm"
+                              className="flex items-center justify-center w-32 h-16 bg-white rounded-full shadow-lg"
                             >
                               {icon && (
                                 <Image

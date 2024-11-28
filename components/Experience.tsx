@@ -12,7 +12,7 @@ export default function Experience() {
       position: 'Software Developer',
       period: 'October 2024 - Present',
       location: 'Oshawa, ON',
-      logo: 'images/ot-space.png', // Unique image for this experience
+      logo: '/images/ot-space.png', // Unique image for this experience
       description: [
         'Apart of the Software depart whos main focus is to sotre data from launches and create predication models using various different codes, ',
       ],
@@ -22,7 +22,7 @@ export default function Experience() {
       position: 'Embedded Software Engineer',
       period: 'July 2024 - Present',
       location: 'Oshawa, ON',
-      logo: 'images/otr-logo.png', // Unique image for this experience
+      logo: '/images/otr-logo.png', // Unique image for this experience
       description: [
         'Designed and built STM32 and NXP S32K-based Electronic systems such as Relow oven, Heads up display, Electronic Control units for vehicle sub-systems.',
         'Implemented CI/CD workflows for PCB design, Python, and C programming incorporating GitHub Actions pipelines, with flexibility for future integration with SIL/HIL testing.',
@@ -34,7 +34,7 @@ export default function Experience() {
       position: 'Website / Software Developer',
       period: 'Nov 2024 - Present',
       location: 'Oshawa, ON',
-      logo: 'images/Blueprint.png', // Unique image for this experience
+      logo: '/images/Blueprint.png', // Unique image for this experience
       description: [
         'Developed the front end of the company website to improve user experience using the Next.js framework',
         'Implemented dynamic content updates and interactive features using React.js, optimizing website performance and responsiveness.',
@@ -46,7 +46,7 @@ export default function Experience() {
       position: 'Machine Programmer',
       period: 'March 2021 - Sept 2021',
       location: 'Brampton, ON',
-      logo: 'images/SigmaMetals.jpg', // Unique image for this experience
+      logo: '/images/SigmaMetals.jpg', // Unique image for this experience
       description: [
         'Orchestrated the setup and optimization of precision machinery using G-code, resulting in a 25% increase in production efficiency and a 15% reduction in setup time.',
         'Operated heavy machinery with precision, producing parts for multiple suppliers with a 99.9% accuracy rate, exceeding quality standards for 10+ Industries and 70+ companies.',
