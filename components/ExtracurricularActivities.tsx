@@ -4,9 +4,6 @@ import { Activity } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
 
-// You no longer need to import images, just use the path directly
-// Images should be in the 'public/images' directory
-
 interface ExtracurricularActivity {
   name: string
   description: string

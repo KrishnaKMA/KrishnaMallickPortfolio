@@ -2,20 +2,20 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section id="about" className="min-h-screen flex bg-blue-400">
-      {/* Image - 2/3 width */}
-      <div className="w-2/3 relative">
+    <section id="about" className="min-h-screen flex flex-col md:flex-row bg-blue-400">
+      {/* Image - full width on mobile and 2/3 width on medium screens */}
+      <div className="w-full md:w-2/3 relative min-h-[400px] md:min-h-screen">
         <Image
-          src="/images/KrishnaMallick.jpeg"  // Corrected path
+          src="/images/KrishnaMallick.jpeg"  // Ensure the image path is correct
           alt="Krishna Mallick"
           layout="fill"  // Fills the parent container
           objectFit="cover"  // Ensures the image covers the container without distortion
-          className="rounded-l-lg"  // Optional: add a rounded left corner if desired
+          className="rounded-t-lg md:rounded-l-lg"  // Optional: add rounded corners for top (mobile) and left (desktop)
         />
       </div>
 
-      {/* Content - 1/3 width */}
-      <div className="w-1/3 flex flex-col justify-center items-start p-8 bg-white bg-opacity-80 rounded-lg shadow-lg">
+      {/* Content - full width on mobile and 1/3 width on medium screens */}
+      <div className="w-full md:w-1/3 flex flex-col justify-center items-start p-8 bg-white bg-opacity-80 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold mb-4">Krishna Mallick</h1>
         <h2 className="text-2xl text-gray-600 mb-8">Software Engineering Student</h2>
         <p className="text-gray-700 mb-6">
@@ -29,7 +29,7 @@ export default function Hero() {
             aria-label="Email"
           >
             <Image
-              src="/images/EmailIcon.png"  // Corrected path
+              src="/images/EmailIcon.png"  // Ensure the image path is correct
               alt="Email Icon"
               width={40}
               height={40}
@@ -43,7 +43,7 @@ export default function Hero() {
             aria-label="LinkedIn"
           >
             <Image
-              src="/images/LinkedinIcon.webp"  // Corrected path
+              src="/images/LinkedinIcon.webp"  // Ensure the image path is correct
               alt="LinkedIn Icon"
               width={40}
               height={40}
@@ -57,7 +57,7 @@ export default function Hero() {
             aria-label="GitHub"
           >
             <Image
-              src="/images/GithubIcon.png"  // Corrected path
+              src="/images/GithubIcon.png"  // Ensure the image path is correct
               alt="GitHub Icon"
               width={40}
               height={40}
