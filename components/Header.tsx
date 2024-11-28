@@ -44,8 +44,8 @@ export default function Header() {
     >
       <nav className="container mx-auto px-4 py-2">
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold">Krishna's Portfolio</span>
-          
+          <span className="text-xl font-bold">Krishna&apos;s Portfolio</span>
+
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-4">
             {navItems.map((item) => (
