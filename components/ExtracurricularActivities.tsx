@@ -2,13 +2,13 @@
 
 import { Activity } from 'lucide-react'
 import { useState } from 'react'
+import Image from 'next/image'
 
-import Image from 'next/image' // Ensure this import is present
-import KarateImage from '../public/images/KaratePhoto.png' // Importing the Karate image
-import BoxingImage from '../public/images/GGG.webp' // Importing the Boxing image
-import GymImage from '../public/images/GymPhoto.jpeg' // Importing the Gym image
-import AstronomyImage from '../public/images/Astronomy.jpg' // Importing the Astronomy image
-import GamingClip from '../public/videos/GamingClip.mp4'; // Importing the Gaming video
+// Import images
+import KarateImage from '../public/images/KaratePhoto.png'
+import BoxingImage from '../public/images/GGG.webp'
+import GymImage from '../public/images/GymPhoto.jpeg'
+import AstronomyImage from '../public/images/Astronomy.jpg'
 
 interface ExtracurricularActivity {
   name: string
@@ -16,6 +16,8 @@ interface ExtracurricularActivity {
   icon: React.ReactNode
   image: string
   additionalInfo: string
+  mediaType: 'image' | 'video' | 'iframe'
+  mediaSrc?: string
 }
 
 export default function ExtracurricularActivities() {
@@ -26,43 +28,51 @@ export default function ExtracurricularActivities() {
       name: "Karate",
       description: "I have been practicing karate since gr5, Coach, athlete, strong believer in the Kaizen philosophy",
       icon: <Activity className="w-6 h-6" />,
-      image: KarateImage,
+      image: KarateImage.src,
       additionalInfo: "I am a coach at my Dojo at Kaizen martial arts where I spearhead the training of the competition team alongside my coach Rob Castro. I achieved 1st que brown belt status (One away from black). multiple medals. Represented team Ontario at Nationals.",
+      mediaType: 'image',
     },
     {
       name: "Boxing",
       description: "Training in boxing for 1-2 years, Train regularly and always follow the sport.",
       icon: <Activity className="w-6 h-6" />,
-      image: BoxingImage,
+      image: BoxingImage.src,
       additionalInfo: "Boxing is something I have loved for a while, I train at my Dojo Kaizen martial arts and in the picture is my favourite boxer Triple GGG aka Gennady Gennadyevich Golovkin.",
+      mediaType: 'image',
     },
     {
       name: "Gym",
       description: "WE GO JIM!!!",
       icon: <Activity className="w-6 h-6" />,
-      image: GymImage,
+      image: GymImage.src,
       additionalInfo: "I go to the gym often to stay on top of my physical fitness, I mostly train for strength because I think being stronger and lifting heavy is impressive and it also help keep my muscles flexible and loose for sports",
+      mediaType: 'image',
     },
     {
       name: "Gaming",
       description: "Passionate about gaming, exploring new titles, and competing in various online multiplayer games.",
       icon: <Activity className="w-6 h-6" />,
-      image: "", // No image for gaming
+      image: '/default-image.jpg',
       additionalInfo: "Gaming is a major hobby for me, and I enjoy playing various genres from strategy to FPS. I also participate in online tournaments and enjoy connecting with the gaming community.",
+      mediaType: 'video',
+      mediaSrc: '/videos/GamingClip.mp4',
     },
     {
       name: "Music",
       description: "I play various instruments and have a deep love for both creating and listening to music.",
       icon: <Activity className="w-6 h-6" />,
-      image: "", // No image for music
+      image: '/default-image.jpg',
       additionalInfo: "I play guitar and piano, and I also write and produce my own music. I love exploring different genres and experimenting with sounds in my free time, below is one of my favourite acoustic pieces.",
+      mediaType: 'iframe',
+      mediaSrc: "https://www.youtube.com/embed/TpTxdYHLYLo",
     },
     {
       name: "Astronomy",
       description: "Exploring the universe through stargazing, telescopes, and learning about celestial bodies.",
       icon: <Activity className="w-6 h-6" />,
-      image: AstronomyImage,
+      image: AstronomyImage.src,
       additionalInfo: "Astronomy has always fascinated me. I enjoy stargazing and learning about the cosmos. I also have a telescope to observe planets, stars, and galaxies.",
+      mediaType: 'image',
     },
   ]
 
@@ -81,6 +91,7 @@ export default function ExtracurricularActivities() {
             >
               <div className="p-2 flex items-start space-x-4 m">
                 <div className="flex-shrink-0">
+                  {activity.icon}
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-xl font-semibold">{activity.name}</h3>
@@ -93,29 +104,31 @@ export default function ExtracurricularActivities() {
                 }`}
               >
                 <p className="text-gray-700">{activity.additionalInfo}</p>
-                {activity.name === "Gaming" ? (
+                {activity.mediaType === 'video' && (
                   <video
                     controls
                     width="100%"
                     height="400"
                     className="rounded-lg"
                   >
-                    <source src={GamingClip} type="video/mp4" />
+                    <source src={activity.mediaSrc} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                ) : activity.name === "Music" ? (
+                )}
+                {activity.mediaType === 'iframe' && (
                   <iframe
                     width="100%"
                     height="400"
-                    src="https://www.youtube.com/embed/TpTxdYHLYLo"
-                    title="Music Video"
+                    src={activity.mediaSrc}
+                    title={`${activity.name} Video`}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
-                ) : (
+                )}
+                {activity.mediaType === 'image' && (
                   <Image
-                    src={activity.image || '/default-image.jpg'} // Fallback image if none exists
+                    src={activity.image}
                     alt={`${activity.name} image`}
                     width={400}
                     height={400}
@@ -130,3 +143,4 @@ export default function ExtracurricularActivities() {
     </section>
   )
 }
+
