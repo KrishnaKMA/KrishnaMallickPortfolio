@@ -60,7 +60,7 @@ export default function Education() {
       { name: 'Next.js', image: '/images/NextJS.svg' },
     ],
     DevOps: [
-      { name: 'Git', image: '/images/Git.png' },
+      { name: 'Git', image: '/images/GIT.png' },
       { name: 'GitHub Actions', image: '/images/GithubActions.png' },
       { name: 'Docker', image: '/images/Docker.svg' },
       { name: 'CI/CD Pipelines', image: '/images/CICDPipelines.png' },
