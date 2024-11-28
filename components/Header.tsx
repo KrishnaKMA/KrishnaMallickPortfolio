@@ -30,19 +30,10 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     document.addEventListener('mousemove', handleMouseMove);
 
-    // Apply overflow-x-hidden and overflow-y-hidden on large screens
-    if (window.innerWidth > 768) {
-      document.body.style.overflowY = 'hidden'; // Hide vertical scrollbar on large screens
-    } else {
-      document.body.style.overflowX = 'hidden'; // Hide horizontal scrollbar on small screens
-    }
-
-    // Clean up event listeners and overflow styles on unmount
+    // Clean up event listeners on unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('mousemove', handleMouseMove);
-      document.body.style.overflowY = ''; // Reset vertical overflow on unmount
-      document.body.style.overflowX = ''; // Reset horizontal overflow on unmount
     };
   }, []);
 
