@@ -5,10 +5,10 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 // Import images
-import KarateImage from '../public/images/KaratePhoto.png'
-import BoxingImage from '../public/images/GGG.webp'
-import GymImage from '../public/images/GymPhoto.jpeg'
-import AstronomyImage from '../public/images/Astronomy.jpg'
+import KarateImage from 'images/KaratePhoto.png'
+import BoxingImage from 'images/GGG.webp'
+import GymImage from 'images/GymPhoto.jpeg'
+import AstronomyImage from 'images/Astronomy.jpg'
 
 interface ExtracurricularActivity {
   name: string
@@ -55,7 +55,7 @@ export default function ExtracurricularActivities() {
       image: '/default-image.jpg',
       additionalInfo: "Gaming is a major hobby for me, and I enjoy playing various genres from strategy to FPS. I also participate in online tournaments and enjoy connecting with the gaming community.",
       mediaType: 'video',
-      mediaSrc: '/videos/GamingClip.mp4',
+      mediaSrc: 'videos/GamingClip.mp4',
     },
     {
       name: "Music",

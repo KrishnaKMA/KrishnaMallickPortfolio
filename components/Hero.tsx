@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import KrishnaMallick from '../public/images/KrishnaMallick.jpeg';  // Importing the image
-import EmailIcon from '../public/images/EmailIcon.png';  // Importing the email icon
-import LinkedinIcon from '../public/images/LinkedinIcon.webp';  // Importing the LinkedIn icon
-import GithubIcon from '../public/images/GithubIcon.png';  // Importing the GitHub icon
+import KrishnaMallick from 'images/KrishnaMallick.jpeg';  // Importing the image
+import EmailIcon from 'images/EmailIcon.png';  // Importing the email icon
+import LinkedinIcon from 'images/LinkedinIcon.webp';  // Importing the LinkedIn icon
+import GithubIcon from 'images/GithubIcon.png';  // Importing the GitHub icon
 
 export default function Hero() {
   return (
