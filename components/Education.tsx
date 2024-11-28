@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Education() {
+  const [activeSkillCategory, setActiveSkillCategory] = useState('Languages')
+
   const education = [
     {
       degree: 'Bachelor of Software Engineering Honours Co-op',
@@ -11,7 +13,7 @@ export default function Education() {
       location: 'Oshawa, ON',
       period: 'Expected April 2027',
     },
-  ];
+  ]
 
   const courses = [
     'Data Structures & Algorithms',
@@ -20,7 +22,7 @@ export default function Education() {
     'iOS App Development (Stanford)',
     'Advanced Web Developer Bootcamp (Udemy)',
     'Object-Oriented Programming',
-  ];
+  ]
 
   const skills = {
     Languages: [
@@ -57,7 +59,7 @@ export default function Education() {
       { name: 'CI/CD Pipelines', image: '/Images/CICDPipelines.png' },
       { name: 'AWS', image: '/Images/AWS.png' },
     ],
-  };
+  }
 
   const certifications = [
     {
@@ -67,7 +69,7 @@ export default function Education() {
       issuedDate: 'November 2024',
       image: '/Images/BrilliantCatalystCerti.png',
     },
-  ];
+  ]
 
   return (
     <section id="education" className="py-20 bg-blue-300">
@@ -90,7 +92,7 @@ export default function Education() {
 
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4">Relevant Coursework</h3>
-          <ul className="grid grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {courses.map((course, index) => (
               <li key={index} className="bg-white p-4 rounded-lg shadow-md">
                 {course}
@@ -99,7 +101,39 @@ export default function Education() {
           </ul>
         </div>
 
-        {/* Certification Section */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold mb-4">Skills</h3>
+          <div className="flex space-x-4 mb-4">
+            {Object.keys(skills).map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveSkillCategory(category)}
+                className={`px-4 py-2 rounded-md ${
+                  activeSkillCategory === category
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-white text-blue-500'
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {skills[activeSkillCategory].map((skill, index) => (
+              <div key={index} className="flex flex-col items-center bg-white p-4 rounded-lg shadow-md">
+                <Image
+                  src={skill.image}
+                  alt={`${skill.name} logo`}
+                  width={50}
+                  height={50}
+                  className="mb-2"
+                />
+                <span className="text-sm text-center">{skill.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-12">
           <h3 className="text-2xl font-bold mb-4">Certifications</h3>
           {certifications.map((cert, index) => (
@@ -109,7 +143,7 @@ export default function Education() {
               <p className="text-gray-500">Issued on: {cert.issuedDate}</p>
               <Image
                 src={cert.image}
-                alt="Certification Image"
+                alt={`${cert.name} Certificate`}
                 width={200}
                 height={120}
                 className="rounded-lg mt-4"
@@ -127,7 +161,7 @@ export default function Education() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 
 
