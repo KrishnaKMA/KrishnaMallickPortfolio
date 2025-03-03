@@ -1,70 +1,37 @@
-'use client'
+"use client"
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Button } from "@/components/ui/button"
+import { Mail } from "lucide-react"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const email = "krishnamallick46@hotmail.com"
+  const subject = "Contact from Website"
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prevState => ({ ...prevState, [name]: value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', formData)
-    // Reset form after submission
-    setFormData({ name: '', email: '', message: '' })
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`
   }
 
   return (
-  <section id="contact" className="py-20 bg-blue-200">
-    <div className="container mx-auto px-6">
-      <h2 className="text-3xl font-bold text-center mb-8">Contact Me</h2>
-      <div className="max-w-md mx-auto">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Textarea
-              name="message"
-              placeholder="Your Message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <Button type="submit" className="w-full">Send Message</Button>
-        </form>
+    <section id="contact" className="py-20 bg-blue-200">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
+        <div className="max-w-md mx-auto">
+          <p className="mb-6 text-gray-700">
+            Feel free to reach out to me directly via email. Click the button below to open your email client.
+          </p>
+          <Button
+            onClick={handleEmailClick}
+            className="px-6 py-3 flex items-center justify-center gap-2 mx-auto"
+            size="lg"
+          >
+            <Mail className="h-5 w-5" />
+            Email Me
+          </Button>
+          <p className="mt-4 text-sm text-gray-600">{email}</p>
+        </div>
       </div>
-    </div>
-  </section>
-)
+    </section>
+  )
 }
+
 
