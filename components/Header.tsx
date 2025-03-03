@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
 import { Menu, X } from 'lucide-react';
 
 export default function Header() {
@@ -50,14 +50,14 @@ export default function Header() {
           <ul className="hidden md:flex space-x-4">
             {navItems.map((item) => (
               <li key={item}>
-                <Link
+                <ScrollLink
                   to={item.toLowerCase()}
                   smooth={true}
                   duration={500}
                   className="bg-gray-800 text-white cursor-pointer rounded-lg px-6 py-3 text-sm shadow-md hover:bg-gray-600 transition-colors"
                 >
                   {item}
-                </Link>
+                </ScrollLink>
               </li>
             ))}
           </ul>
@@ -83,7 +83,7 @@ export default function Header() {
             <ul className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <li key={item}>
-                  <Link
+                  <ScrollLink
                     to={item.toLowerCase()}
                     smooth={true}
                     duration={500}
@@ -91,7 +91,7 @@ export default function Header() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item}
-                  </Link>
+                  </ScrollLink>
                 </li>
               ))}
             </ul>
