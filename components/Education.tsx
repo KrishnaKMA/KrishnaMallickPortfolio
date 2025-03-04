@@ -76,18 +76,26 @@ export default function Education() {
       issuedDate: 'November 2024',
       image: '/images/BrilliantCatalystCerti.png',
     },
+
+    {
+      name: 'Wavemakers program completion Certification',
+      issuedBy: 'iPWRU',
+      url: 'https://credentials.wavemakers.network/verifier?id=c0c8d983-9bf0-45fa-b1e3-d3188f34c911&dbl=to',
+      issuedDate: 'November 2024',
+      image: '/images/WavemakersCerti.png',
+    },
   ]
 
   return (
-    <section id="education" className="py-20 bg-blue-300">
+    <section id="education" className="py-20 bg-black border-b-4 border-red-600">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8">Education</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-red-600">Education</h2>
         <div className="space-y-8">
           {education.map((edu, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md flex items-center justify-between min-h-[100px]">
+            <div key={index} className="bg-gray-900 p-6 rounded-lg shadow-md flex items-center justify-between min-h-[100px] border-2 border-red-600">
               <div>
-                <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                <p className="text-gray-600">
+                <h3 className="text-xl font-semibold text-white">{edu.degree}</h3>
+                <p className="text-white">
                   {edu.school}, {edu.location}
                 </p>
                 <p className="text-gray-500">{edu.period}</p>
@@ -106,10 +114,10 @@ export default function Education() {
         </div>
 
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">Relevant Coursework</h3>
+          <h3 className="text-2xl font-bold mb-4 text-red-600">Relevant Coursework</h3>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {courses.map((course, index) => (
-              <li key={index} className="bg-white p-4 rounded-lg shadow-md min-h-[70px]">
+              <li key={index} className="bg-gray-900 p-4 rounded-lg shadow-md min-h-[70px] text-white border-2 border-red-600">
                 {course}
               </li>
             ))}
@@ -117,15 +125,15 @@ export default function Education() {
         </div>
 
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">Skills</h3>
+          <h3 className="text-2xl font-bold mb-4 text-red-600">Skills</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {Object.keys(skills).map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveSkillCategory(category as SkillCategory)}
                 className={`px-5 py-3 rounded-md text-sm ${activeSkillCategory === category
-                    ? 'bg-blue-500 text-white'
-                    : 'bg-white text-blue-500'
+                    ? 'bg-gray-800 text-white border border-red-600'
+                    : 'bg-gray-400 text-black border border-red-600'
                   }`}
               >
                 {category}
@@ -136,7 +144,8 @@ export default function Education() {
             {skills[activeSkillCategory].map((skill, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center bg-white p-4 rounded-full shadow-md justify-center min-h-[100px] max-h-[100px] w-full"
+                 className="flex flex-col items-center border-2 text-white border-red-600 bg-gray-900 p-4 rounded-full shadow-md justify-center min-h-[100px] max-h-[100px] w-full 
+             hover:bg-white hover:text-black hover:border-red-600 transition duration-300 "
               >
                 <Image
                   src={skill.image}
@@ -152,9 +161,9 @@ export default function Education() {
         </div>
 
         <div className="mt-12">
-          <h3 className="text-2xl font-bold mb-4">Certifications</h3>
+          <h3 className="text-2xl font-bold mb-4 text-red-600">Certifications</h3>
           {certifications.map((cert, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md min-h-[200px]">
+            <div key={index} className=" mb-6 bg-gray-900 text-white p-6 rounded-lg shadow-md min-h-[200px]">
               <h4 className="text-xl font-semibold">{cert.name}</h4>
               <p className="text-gray-600">Issued by: {cert.issuedBy}</p>
               <p className="text-gray-500">Issued on: {cert.issuedDate}</p>

@@ -38,13 +38,13 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${
-        isVisible ? 'transform translate-y-0' : 'transform -translate-y-full'
+      className={`fixed top-0 left-0 right-0 z-50 bg-black shadow-md transition-transform duration-300 border-b-4 border-red-500 pb-2 ${
+        isVisible ? 'transform translate-y-0 border-b-4 border-red-500 pb-2' : 'transform -translate-y-full'
       }`}
     >
       <nav className="container mx-auto px-4 py-2">
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold">Krishna&apos;s Portfolio</span>
+          <span className="text-xl font-bold text-white">Krishna&apos;s Portfolio</span>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex space-x-4">
@@ -54,9 +54,11 @@ export default function Header() {
                   to={item.toLowerCase()}
                   smooth={true}
                   duration={500}
-                  className="bg-gray-800 text-white cursor-pointer rounded-lg px-6 py-3 text-sm shadow-md hover:bg-gray-600 transition-colors"
+                  className="relative bg-gray-400 text-black cursor-pointer rounded-lg px-6 py-3 text-sm shadow-md transition-all
+                  before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-transparent before:transition-all before:duration-300
+                  hover:before:border-red-500 hover:before:shadow-[0_0_10px_rgba(255,0,0,0.8)]"
                 >
-                  {item}
+                  <span className="relative z-10">{item}</span>
                 </Link>
               </li>
             ))}
@@ -66,7 +68,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-gray-800 hover:text-gray-600 focus:outline-none"
+              className="p-2 text-white hover:text-gray-500 focus:outline-none"
             >
               {isMobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -87,10 +89,12 @@ export default function Header() {
                     to={item.toLowerCase()}
                     smooth={true}
                     duration={500}
-                    className="block bg-gray-800 text-white cursor-pointer rounded-lg px-3 py-2 text-sm shadow-md hover:bg-gray-600 transition-colors"
+                    className="relative block bg-gray-700 text-white cursor-pointer rounded-lg px-3 py-2 text-sm shadow-md transition-all
+                    before:absolute before:inset-0 before:rounded-lg before:border-2 before:border-transparent before:transition-all before:duration-300
+                    hover:before:border-red-500 hover:before:shadow-[0_0_10px_rgba(255,0,0,0.8)]"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item}
+                    <span className="relative z-10">{item}</span>
                   </Link>
                 </li>
               ))}

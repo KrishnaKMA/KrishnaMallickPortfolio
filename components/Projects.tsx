@@ -95,27 +95,27 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-blue-300">
+    <section id="projects" className="py-20 bg-black">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8">Projects</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-red-600">Projects</h2>
 
         <Carousel className="w-full">
           <CarouselContent>
             {projects.map((project, index) => (
               <CarouselItem key={index}>
                 <div className="p-4">
-                  <Card className="overflow-hidden shadow-md">
+                  <Card className="overflow-hidden shadow-md bg-gray-900">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                      <p className="text-gray-600 mb-4">{project.date}</p>
-                      <p className="text-gray-700 mb-4">{project.description}</p>
+                      <h3 className="text-xl font-semibold mb-2 text-red-600">{project.title}</h3>
+                      <p className="text-white mb-4">{project.date}</p>
+                      <p className="text-white mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-4 mt-4">
                         {project.technologies.map((tech, idx) => {
                           const icon = getTechnologyIcon(tech);
                           return (
                             <div
                               key={idx}
-                              className="flex items-center justify-center w-32 h-16 bg-white rounded-full shadow-lg"
+                              className="flex items-center justify-center w-32 h-16 bg-white border border-red-600 rounded-full shadow-lg"
                             >
                               {icon && (
                                 <Image

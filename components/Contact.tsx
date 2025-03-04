@@ -12,10 +12,21 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-blue-200">
-      <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold mb-8">Contact Me</h2>
-        <div className="max-w-md mx-auto">
+    <section id="contact" className="relative py-20 bg-blue-200 overflow-hidden">
+      {/* Background Video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/videos/ContactsVid.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      
+      {/* Content */}
+      <div className="relative container mx-auto px-6 text-center z-10">
+        <h2 className="text-3xl font-bold mb-8 text-red-600">Contact Me</h2>
+        <div className="max-w-md mx-auto bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
           <p className="mb-6 text-gray-700">
             Feel free to reach out to me directly via email. Click the button below to open your email client.
           </p>
@@ -33,5 +44,6 @@ export default function Contact() {
     </section>
   )
 }
+
 
 
