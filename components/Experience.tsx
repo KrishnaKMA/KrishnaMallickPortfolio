@@ -68,14 +68,17 @@ export default function Experience() {
 
   return (
     <section id="experience" className="relative py-20 text-white border-b-4 border-red-600">
-      <video
-        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
-        src="/videos/Experiencebg.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
+      <video 
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+>
+  <source src="/videos/Experiencebg.mp4" type="video/mp4" />
+</video>
+
+
       <div className="container mx-auto px-6 relative z-10 bg-gray-900 bg-opacity-0 p-8 rounded-lg">
         <h2 className="text-3xl font-bold text-center text-red-600 mb-8">Experience</h2>
         <div className="space-y-6">

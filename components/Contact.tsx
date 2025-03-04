@@ -5,7 +5,7 @@ import { Mail } from "lucide-react"
 
 export default function Contact() {
   const email = "krishnamallick46@hotmail.com"
-  const subject = "Contact from Website"
+  const subject = "What is your Subject?"
 
   const handleEmailClick = () => {
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`
