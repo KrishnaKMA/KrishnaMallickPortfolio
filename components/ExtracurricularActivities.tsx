@@ -20,9 +20,10 @@ export default function ExtracurricularActivities() {
     {
       name: "Karate",
       description: "I have been practicing karate since grade 5, Coach, athlete, strong believer in the Kaizen philosophy",
-      image: '/images/KaratePhoto.png',
+      image: '',
       additionalInfo: "I am a coach at my Dojo at Kaizen martial arts where I spearhead the training of the competition team alongside my coach Rob Castro. I achieved 1st que brown belt status (One away from black). Multiple medals. Represented team Ontario at Nationals.",
-      mediaType: 'image',
+      mediaType: 'video',
+      mediaSrc: 'videos/KarateVid.mov',
     },
     {
       name: "Boxing",
