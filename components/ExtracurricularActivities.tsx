@@ -23,7 +23,7 @@ export default function ExtracurricularActivities() {
       image: '',
       additionalInfo: "I am a coach at my Dojo at Kaizen martial arts where I spearhead the training of the competition team alongside my coach Rob Castro. I achieved 1st que brown belt status (One away from black). Multiple medals. Represented team Ontario at Nationals.",
       mediaType: 'video',
-      mediaSrc: 'videos/KarateVid.mov',
+      mediaSrc: 'videos/KarateVid.mp4',
     },
     {
       name: "Boxing",
