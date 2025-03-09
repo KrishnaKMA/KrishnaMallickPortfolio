@@ -86,7 +86,7 @@ export default function Contact() {
                 <div className="w-full md:w-1/2 text-center md:text-left">
                   <h3 className="text-2xl font-bold text-white mb-4">Contact Me</h3>
                   <p className="text-gray-300 mb-6">
-                    I'm always open to new opportunities and collaborations. Feel free to reach out via email.
+                    I&apos;m always open to new opportunities and collaborations. Feel free to reach out via email.
                   </p>
 
                   <div className="flex flex-col gap-4">

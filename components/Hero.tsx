@@ -4,9 +4,46 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { ArrowRight, Mail, Github, Linkedin } from "lucide-react"
 
+// Define types for Vanta.js
+interface VantaEffect {
+  destroy: () => void
+}
+
+// Define the VANTA object structure
+interface VantaAPI {
+  NET: (options: VantaNetOptions) => VantaEffect
+  // Add other effects if needed (BIRDS, WAVES, etc.)
+}
+
+// Define the options for the NET effect
+interface VantaNetOptions {
+  el: HTMLElement | null
+  mouseControls: boolean
+  touchControls: boolean
+  gyroControls: boolean
+  minHeight: number
+  minWidth: number
+  scale: number
+  scaleMobile: number
+  backgroundColor: number
+  color: number
+  points: number
+  maxDistance: number
+  spacing: number
+  // Replace 'any' with a more specific union type
+  [key: string]: HTMLElement | null | boolean | number | string | (() => void)
+}
+
+// Extend the Window interface to include VANTA
+declare global {
+  interface Window {
+    VANTA: VantaAPI
+  }
+}
+
 export default function Hero() {
-  const [vantaEffect, setVantaEffect] = useState(null)
-  const vantaRef = useRef(null)
+  const [vantaEffect, setVantaEffect] = useState<VantaEffect | null>(null)
+  const vantaRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -34,8 +71,8 @@ export default function Hero() {
 
       vantaScript.onload = () => {
         // Initialize Vanta effect
-        if (!vantaEffect) {
-          // @ts-ignore - Vanta is loaded via script tags
+        if (!vantaEffect && vantaRef.current && window.VANTA) {
+          // Now we can safely access window.VANTA without type errors
           const effect = window.VANTA.NET({
             el: vantaRef.current,
             mouseControls: true,
@@ -51,6 +88,7 @@ export default function Hero() {
             maxDistance: 20.0,
             spacing: 16.0,
           })
+
           setVantaEffect(effect)
         }
       }
@@ -96,7 +134,7 @@ export default function Hero() {
           <div className="max-w-xl text-center lg:text-left">
             <div className="space-y-4">
               <div>
-                <p className="text-red-500 font-medium mb-2">Hello, I'm</p>
+                <p className="text-red-500 font-medium mb-2">Hello, I&apos;m</p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2">
                   Krishna <span className="text-red-600">Mallick</span>
                 </h1>
