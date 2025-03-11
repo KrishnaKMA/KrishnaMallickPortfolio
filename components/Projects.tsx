@@ -92,6 +92,13 @@ export default function Projects() {
       technologies: ['C++', 'Figma', 'Nextion', 'HTML', 'CSS', 'Java'],
       date: 'September 2024',
     },
+
+    {
+      title: 'Hillchart embedded into Notion for OpenCore',
+      description: 'Developed a hillchart embedded into Notion so customers can see the progress of the service they have a contract for. they can see the latest updates, add more requirement for the chart and',
+      technologies: ['Next.js', 'Supabase', 'GoogleOAuth', 'Notion',],
+      date: 'Feburary 2025',
+    },
   ];
 
   return (
