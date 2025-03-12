@@ -12,7 +12,6 @@ interface VantaEffect {
 // Define the VANTA object structure
 interface VantaAPI {
   NET: (options: VantaNetOptions) => VantaEffect
-  // Add other effects if needed (BIRDS, WAVES, etc.)
 }
 
 // Define the options for the NET effect
@@ -30,7 +29,6 @@ interface VantaNetOptions {
   points: number
   maxDistance: number
   spacing: number
-  // Replace 'any' with a more specific union type
   [key: string]: HTMLElement | null | boolean | number | string | (() => void)
 }
 
@@ -70,9 +68,7 @@ export default function Hero() {
       document.body.appendChild(vantaScript)
 
       vantaScript.onload = () => {
-        // Initialize Vanta effect
         if (!vantaEffect && vantaRef.current && window.VANTA) {
-          // Now we can safely access window.VANTA without type errors
           const effect = window.VANTA.NET({
             el: vantaRef.current,
             mouseControls: true,
@@ -94,7 +90,6 @@ export default function Hero() {
       }
     }
 
-    // Cleanup function
     return () => {
       if (vantaEffect) vantaEffect.destroy()
     }
@@ -148,6 +143,7 @@ export default function Hero() {
                 efficient and innovative solutions.
               </p>
 
+              {/* Buttons */}
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-6">
                 <a
                   href="#projects"
@@ -162,6 +158,15 @@ export default function Hero() {
                 >
                   Contact Me
                 </a>
+                {/* View Resume Button */}
+                <a
+                  href="/files/Krishna_Mallick_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-gray-800 border border-gray-600 text-gray-300 rounded-full font-medium hover:bg-red-600 hover:border-red-600 hover:text-white transition-all duration-300"
+                >
+                  View Resume
+                </a>
               </div>
 
               {/* Social Links */}
@@ -169,7 +174,6 @@ export default function Hero() {
                 <a
                   href="mailto:krishnamallick46@hotmail.com"
                   className="p-3 bg-gray-900/80 rounded-full hover:bg-red-600/20 hover:text-red-500 transition-all duration-300 text-gray-300"
-                  aria-label="Email"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
@@ -178,7 +182,6 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-900/80 rounded-full hover:bg-red-600/20 hover:text-red-500 transition-all duration-300 text-gray-300"
-                  aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
@@ -187,7 +190,6 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-gray-900/80 rounded-full hover:bg-red-600/20 hover:text-red-500 transition-all duration-300 text-gray-300"
-                  aria-label="GitHub"
                 >
                   <Github className="w-5 h-5" />
                 </a>
