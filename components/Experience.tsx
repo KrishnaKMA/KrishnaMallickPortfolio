@@ -29,7 +29,8 @@ export default function Experience() {
       logo: '/images/ot-space.png',
       description: [
         'Part of the Software department focusing on data storage from launches and predictive modeling using various programming languages.',
-        'Also assisting in the avionics department to gain experience with embedded systems in rockets.',
+        'Also int eh futre plan on assisting in the avionics department to gain experience with embedded systems in rockets.',
+        'assited in updates for website'
       ],
       skills: ['Data Storage', 'Predictive Modeling', 'Embedded Systems'],
       color: '#0066CC'
@@ -42,8 +43,7 @@ export default function Experience() {
       logo: '/images/otr-logo.png',
       description: [
         'Designed and built STM32 and NXP S32K-based electronic systems such as reflow ovens, HUDs, and ECUs for vehicle subsystems.',
-        'Implemented CI/CD workflows for PCB design, Python, and C programming, incorporating GitHub Actions pipelines with future SIL/HIL testing.',
-        'Developed a HUD with an ESP32 microprocessor, integrating it with SolidWorks.',
+        'Developed a HUD with an ESP32 microprocessor, figma for front end, integrating it with SolidWorks.',
       ],
       skills: ['STM32', 'NXP S32K', 'CI/CD', 'GitHub Actions', 'ESP32', 'SolidWorks'],
       color: '#00CC66'
