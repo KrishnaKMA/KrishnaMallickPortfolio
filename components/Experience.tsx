@@ -24,12 +24,12 @@ export default function Experience() {
     {
       company: 'Ontario Tech Space and Rocketry',
       position: 'Software Developer',
-      period: 'October 2024 - Present',
+      period: 'October 2024 - March 2025',
       location: 'Oshawa, ON',
       logo: '/images/ot-space.png',
       description: [
-        'Part of the Software department focusing on data storage from launches and predictive modeling using various programming languages.',
-        'Also int eh futre plan on assisting in the avionics department to gain experience with embedded systems in rockets.',
+        'Part of the Software department that focused on data storage from launches and predictive modeling using various programming languages.',
+        'Also in the futere planned on assisting in the avionics department to gain experience with embedded systems in rockets.',
         'assited in updates for website'
       ],
       skills: ['Data Storage', 'Predictive Modeling', 'Embedded Systems'],
@@ -38,12 +38,13 @@ export default function Experience() {
     {
       company: 'Ontario Tech Racing',
       position: 'Embedded Software Engineer',
-      period: 'July 2024 - Present',
+      period: 'July 2024 - March 2025',
       location: 'Oshawa, ON',
       logo: '/images/otr-logo.png',
       description: [
         'Designed and built STM32 and NXP S32K-based electronic systems such as reflow ovens, HUDs, and ECUs for vehicle subsystems.',
-        'Developed a HUD with an ESP32 microprocessor, figma for front end, integrating it with SolidWorks.',
+        'Developed a personal HUD with an ESP32 microprocessor, figma for front end, integrating it with SolidWorks.',
+        'Learned (But not applied) how to program various microprocessors for DAQ and sub vechicle systems'
       ],
       skills: ['STM32', 'NXP S32K', 'CI/CD', 'GitHub Actions', 'ESP32', 'SolidWorks'],
       color: '#00CC66'
@@ -55,7 +56,8 @@ export default function Experience() {
       location: 'Oshawa, ON',
       logo: '/images/Blueprint.png',
       description: [
-        'Developed the front end of the company website using Next.js to improve user experience.',
+        'assisting on the development of websites for NPOs using next.js and various other tools ',
+        'helped Develop the front end of the company website using Next.js to improve user experience.',
         'Implemented dynamic content updates and interactive features using React.js, optimizing performance and responsiveness.',
         'Learning and applying the core values of the company while using tech for social good.',
       ],

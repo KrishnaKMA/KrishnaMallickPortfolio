@@ -159,14 +159,14 @@ export default function Hero() {
                   Contact Me
                 </a>
                 {/* View Resume Button */}
-              <a
+              {/* <a
                   href="files\Krishna Mallick Resume (2025).pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-gray-800 border border-gray-600 text-gray-300 rounded-full font-medium hover:bg-red-600 hover:border-red-600 hover:text-white transition-all duration-300"
                 >
                   View Resume
-                </a>
+                </a> */}
               </div>
 
               {/* Social Links */}
