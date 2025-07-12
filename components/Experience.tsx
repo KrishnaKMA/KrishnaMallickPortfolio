@@ -22,6 +22,18 @@ export default function Experience() {
       color: '#FF4500'
     },
     {
+      company: 'Wouessi Digital',
+      position: 'Software Developer Intern',
+      period: 'March 2025 - May 2025',
+      location: 'Remote',
+      logo: '/images/Wouessi.webp',
+      description: [
+        'Developed the Tender Discovery Platform (TDP) with a 7-person team using HTML, CSS, JavaScript, Kubernetes, and Jenkins, Visualized 5+ years of procurement data , reducing manual analysis, Created interactive dashboards across 15+ categories and optimized CI/CD pipelines to reduce release time',
+      ],
+      skills: ['HTML', 'CSS', 'JavaScript', 'Kuberntes', 'Jenkins'],
+      color: '#FF4500'
+    },
+    {
       company: 'Ontario Tech Space and Rocketry',
       position: 'Software Developer',
       period: 'October 2024 - March 2025',
