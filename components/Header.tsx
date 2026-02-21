@@ -1,157 +1,219 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Link } from "react-scroll"
-import { Menu, X, ChevronRight } from "lucide-react"
+import { Menu, X, Mail, LucideLinkedin, LucideGithub } from "lucide-react"
 
 export default function Header() {
-  const [isVisible, setIsVisible] = useState(true)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("about")
+  const [isVisible, setIsVisible] = useState(true)
 
-  const handleScroll = () => {
-    // Hide header on scroll down, show on scroll up
-    if (window.scrollY === 0) {
-      setIsVisible(true)
-    } else if (window.scrollY > 0) {
-      setIsVisible(false)
-    }
-
-    // Determine active section
-    const sections = ["about", "experience", "education", "projects", "contact"]
-    for (const section of sections) {
-      const element = document.getElementById(section)
-      if (element) {
-        const rect = element.getBoundingClientRect()
-        if (rect.top <= 100 && rect.bottom >= 100) {
-          setActiveSection(section)
-          break
-        }
-      }
-    }
-  }
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (e.clientY < 100) {
-      setIsVisible(true)
-    } else if (window.scrollY > 0) {
-      setIsVisible(false)
-    }
-  }
+  const lastScrollY = useRef(0)
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
-    document.addEventListener("mousemove", handleMouseMove)
+    const handleScroll = () => {
+      const currentY = window.scrollY
 
+      // Track active section
+      const sections = ["about", "extracurricular", "education", "experience", "projects", "contact"]
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (rect.top <= 80 && rect.bottom >= 80) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+
+      // Hide on scroll down (only when not at very top)
+      if (currentY > 80) {
+        if (currentY > lastScrollY.current) {
+          setIsVisible(false) // scrolling down → hide
+        }
+      } else {
+        setIsVisible(true) // at top → always show
+      }
+
+      lastScrollY.current = currentY
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      // Reveal when mouse is within 80px of the top of the viewport
+      if (e.clientY < 80) {
+        setIsVisible(true)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      document.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mousemove", handleMouseMove)
     }
   }, [])
 
   const navItems = [
-    { name: "About", icon: "👤" },
-    { name: "Experience", icon: "💼" },
-    { name: "Education", icon: "🎓" },
-    { name: "Projects", icon: "🚀" },
-    { name: "Contact", icon: "📧" },
+    { name: "About", id: "about" },
+    { name: "Experience", id: "experience" },
+    { name: "Education", id: "education" },
+    { name: "Projects", id: "projects" },
+    { name: "Contact", id: "contact" },
   ]
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-sm ${
-        isVisible ? "transform translate-y-0" : "transform -translate-y-full"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        height: "70px",
+        // Fully transparent — no background, no blur
+        background: "transparent",
+        border: "none",
+        boxShadow: "none",
+        // Slide up/down based on isVisible
+        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.35s ease",
+      }}
     >
-      <div className="bg-black/90 border-b-2 border-red-600 shadow-lg shadow-red-600/20">
-        <nav className="container mx-auto px-4 py-3">
-          <div className="flex justify-between items-center">
-            {/* Logo/Name */}
-            <div className="flex items-center">
-              <span className="text-xl font-bold bg-gradient-to-r from-red-500 to-red-700 bg-clip-text text-transparent">
-                Krishna Mallick
-              </span>
-              <span className="ml-2 text-xs text-gray-400 hidden sm:inline-block">Software Engineer</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <ul className="hidden md:flex space-x-1 lg:space-x-2">
-              {navItems.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.name.toLowerCase()}
-                    spy={true}
-                    smooth={true}
-                    duration={500}
-                    className={`relative group cursor-pointer px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center
-                      ${
-                        activeSection === item.name.toLowerCase()
-                          ? "bg-red-600/20 text-white"
-                          : "text-gray-300 hover:text-white hover:bg-red-600/10"
-                      }`}
-                  >
-                    <span className="hidden lg:inline-block mr-1">{item.icon}</span>
-                    <span>{item.name}</span>
-                    <span
-                      className={`absolute bottom-0 left-0 h-0.5 bg-red-600 transition-all duration-300 
-                      ${activeSection === item.name.toLowerCase() ? "w-full" : "w-0 group-hover:w-full"}`}
-                    ></span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            {/* Mobile Navigation Button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-full bg-red-600/20 text-white hover:bg-red-600/30 transition-colors duration-300 focus:outline-none"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          <div
-            className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
-            }`}
+      <div className="h-full flex items-center justify-between porto-container">
+        {/* Brand */}
+        <Link to="about" smooth={true} duration={500} className="cursor-pointer flex-shrink-0">
+          <span
+            style={{
+              fontFamily: "'Bebas Neue', sans-serif",
+              fontSize: "20px",
+              letterSpacing: "0.1em",
+              color: "#ffffff",
+              textTransform: "uppercase",
+              textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+            }}
           >
-            <ul className="space-y-2 py-2">
+            Krishna Mallick
+          </span>
+        </Link>
+
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex items-center gap-7">
+          {navItems.map((item) => (
+            <li key={item.name}>
+              <Link
+                to={item.id}
+                spy={true}
+                smooth={true}
+                duration={500}
+                className={`nav-link${activeSection === item.id ? " active" : ""}`}
+                style={{ textShadow: "0 1px 6px rgba(0,0,0,0.7)" }}
+              >
+                {item.name}
+                {activeSection === item.id && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "1px",
+                      background: "#e05a3a",
+                    }}
+                  />
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Social icons — keep dark circles so they're visible over any background */}
+        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+          <a href="mailto:krishnamallick46@hotmail.com" className="social-icon" aria-label="Email">
+            <Mail className="w-4 h-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/krishna-mallick-a558b6260/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            aria-label="LinkedIn"
+          >
+            <LucideLinkedin className="w-4 h-4" />
+          </a>
+          <a
+            href="https://github.com/KrishnaKMA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            aria-label="GitHub"
+          >
+            <LucideGithub className="w-4 h-4" />
+          </a>
+        </div>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-white hover:text-gray-300 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu — dark background for readability */}
+      {isMobileMenuOpen && (
+        <div
+          style={{
+            background: "rgba(10,10,10,0.97)",
+            borderTop: "1px solid rgba(255,255,255,0.06)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
+        >
+          <div className="porto-container py-5 space-y-4">
+            <ul className="space-y-4">
               {navItems.map((item) => (
                 <li key={item.name}>
                   <Link
-                    to={item.name.toLowerCase()}
+                    to={item.id}
                     spy={true}
                     smooth={true}
                     duration={500}
-                    className={`flex items-center justify-between p-3 rounded-lg text-sm font-medium transition-all duration-200
-                      ${
-                        activeSection === item.name.toLowerCase()
-                          ? "bg-gradient-to-r from-red-700 to-red-600 text-white shadow-md shadow-red-600/30"
-                          : "bg-gray-900 text-gray-300 hover:bg-gray-800"
-                      }`}
+                    className={`nav-link block${activeSection === item.id ? " active" : ""}`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <div className="flex items-center">
-                      <span className="mr-3">{item.icon}</span>
-                      <span>{item.name}</span>
-                    </div>
-                    <ChevronRight
-                      className={`h-4 w-4 transition-transform ${
-                        activeSection === item.name.toLowerCase() ? "rotate-90" : ""
-                      }`}
-                    />
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
+            <div className="flex gap-2 pt-2 border-t border-white/5">
+              <a href="mailto:krishnamallick46@hotmail.com" className="social-icon">
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/krishna-mallick-a558b6260/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                <LucideLinkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/KrishnaKMA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-icon"
+              >
+                <LucideGithub className="w-4 h-4" />
+              </a>
+            </div>
           </div>
-        </nav>
-      </div>
+        </div>
+      )}
     </header>
   )
 }
-

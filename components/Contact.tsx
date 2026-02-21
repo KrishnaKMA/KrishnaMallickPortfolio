@@ -1,7 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Mail, Linkedin, Github, Copy, CheckCircle, ArrowRight } from "lucide-react"
+import { Mail, LucideLinkedin, LucideGithub, Copy, CheckCircle } from "lucide-react"
 import { useState } from "react"
 import { motion } from "framer-motion"
 
@@ -23,158 +22,212 @@ export default function Contact() {
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: <LucideLinkedin className="w-5 h-5" />,
       url: "https://www.linkedin.com/in/krishna-mallick-a558b6260/",
-      color: "bg-[#0077B5]",
     },
     {
       name: "GitHub",
-      icon: <Github className="w-5 h-5" />,
+      icon: <LucideGithub className="w-5 h-5" />,
       url: "https://github.com/KrishnaKMA",
-      color: "bg-[#333]",
     },
-    // Add more social links as needed
   ]
 
   return (
     <section
       id="contact"
-      className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black border-b border-red-600"
+      className="section-pad"
+      style={{ background: 'transparent', position: 'relative' }}
     >
-      {/* Red accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
+      {/* Subtle background glow */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-80px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '600px',
+          height: '300px',
+          background: 'radial-gradient(ellipse, rgba(224,90,58,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }}
+      />
 
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 25px 25px, white 2%, transparent 0%), radial-gradient(circle at 75px 75px, white 2%, transparent 0%)",
-            backgroundSize: "100px 100px",
-          }}
-        ></div>
-      </div>
+      <div className="porto-container">
 
-      {/* Content */}
-      <div className="relative container mx-auto px-4 sm:px-6 z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-white mb-4">
-            Get In <span className="text-red-600">Touch</span>
-          </h2>
-          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '64px' }}
+        >
+          <span className="section-label">Say Hello</span>
+          <h2 className="section-heading">Get In Touch</h2>
+          <p style={{ fontSize: '16px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', maxWidth: '480px', lineHeight: '1.7', marginTop: '16px' }}>
             Have a question or want to work together? Feel free to reach out!
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-3xl mx-auto">
+        <div style={{ maxWidth: '860px' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="bg-gray-900 rounded-xl overflow-hidden shadow-2xl relative"
+            transition={{ duration: 0.5 }}
+            className="porto-card-flat"
           >
-            {/* Decorative elements */}
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-gradient-to-r from-red-600/20 to-red-800/20 blur-xl"></div>
-            <div className="absolute -top-10 -left-10 w-40 h-40 rounded-full bg-gradient-to-r from-red-800/20 to-red-600/20 blur-xl"></div>
+            <div className="flex flex-col md:flex-row" style={{ padding: '48px' }}>
 
-            <div className="p-8 md:p-10 relative z-10">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <div className="w-full md:w-1/2 text-center md:text-left">
-                  <h3 className="text-2xl font-bold text-white mb-4">Contact Me</h3>
-                  <p className="text-gray-300 mb-6">
-                    I&apos;m always open to new opportunities and collaborations. Feel free to reach out via email.
+              {/* Left — contact details */}
+              <div style={{ flex: 1, marginRight: '0', paddingRight: '0' }} className="md:pr-12 md:border-r md:border-white/5">
+                <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', letterSpacing: '0.05em', color: '#ffffff', marginBottom: '16px' }}>
+                  Contact Me
+                </h3>
+                <p style={{ fontSize: '14px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', lineHeight: '1.7', marginBottom: '28px' }}>
+                  I&apos;m always open to new opportunities and collaborations. Feel free to reach out via email.
+                </p>
+
+                {/* Email row */}
+                <div style={{ marginBottom: '24px' }}>
+                  <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '8px' }}>
+                    Email
                   </p>
-
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <p className="text-sm text-gray-400 mb-1">Email:</p>
-                      <div className="flex items-center gap-2">
-                        <code className="bg-gray-800 px-3 py-2 rounded text-gray-300 flex-grow text-sm overflow-hidden overflow-ellipsis">
-                          {email}
-                        </code>
-                        <Button
-                          onClick={handleCopyEmail}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs flex items-center gap-1 min-w-[70px]"
-                        >
-                          {copied ? (
-                            <>
-                              <CheckCircle className="w-3 h-3" />
-                              Copied
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3 h-3" />
-                              Copy
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div>
-                      <p className="text-sm text-gray-400 mb-1">Connect with me:</p>
-                      <div className="flex gap-3">
-                        {socialLinks.map((link, index) => (
-                          <a
-                            key={index}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`${link.color} p-3 rounded-full text-white hover:opacity-90 transition-opacity`}
-                            aria-label={link.name}
-                          >
-                            {link.icon}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <code
+                      style={{
+                        flex: 1,
+                        padding: '10px 14px',
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '8px',
+                        fontSize: '13px',
+                        color: 'rgba(255,255,255,0.7)',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {email}
+                    </code>
+                    <button
+                      onClick={handleCopyEmail}
+                      style={{
+                        padding: '10px 14px',
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                        borderRadius: '8px',
+                        color: copied ? '#44cc88' : 'rgba(255,255,255,0.6)',
+                        fontSize: '12px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        flexShrink: 0,
+                        transition: 'color 0.2s ease, border-color 0.2s ease',
+                      }}
+                    >
+                      {copied ? <CheckCircle className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copied ? 'Copied' : 'Copy'}
+                    </button>
                   </div>
                 </div>
 
-                <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
-                  <div className="bg-gradient-to-r from-red-700 to-red-600 p-[1px] rounded-full w-24 h-24 mb-6">
-                    <div className="bg-gray-900 rounded-full w-full h-full flex items-center justify-center">
-                      <Mail className="w-10 h-10 text-red-500" />
-                    </div>
+                {/* Social links */}
+                <div>
+                  <p style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '10px' }}>
+                    Connect
+                  </p>
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    {socialLinks.map((link, index) => (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="social-icon"
+                        aria-label={link.name}
+                      >
+                        {link.icon}
+                      </a>
+                    ))}
                   </div>
-
-                  <Button
-                    onClick={handleEmailClick}
-                    className="bg-gradient-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white px-8 py-6 h-auto rounded-full flex items-center gap-3 transition-all text-lg font-medium"
-                  >
-                    <Mail className="w-5 h-5" />
-                    Email Me
-                  </Button>
-
-                  <p className="text-gray-400 text-sm mt-4">Response time: 24-48 hours</p>
                 </div>
+              </div>
+
+              {/* Right — CTA */}
+              <div
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '32px' }}
+                className="md:pl-12 md:pt-0"
+              >
+                {/* Mail icon ring */}
+                <div
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(224,90,58,0.35)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                    background: 'rgba(224,90,58,0.08)',
+                  }}
+                >
+                  <Mail style={{ width: '32px', height: '32px', color: '#e05a3a' }} />
+                </div>
+
+                <button
+                  onClick={handleEmailClick}
+                  style={{
+                    padding: '14px 32px',
+                    background: 'linear-gradient(135deg, #c0392b, #e05a3a)',
+                    border: 'none',
+                    borderRadius: '0',
+                    color: '#ffffff',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    transition: 'opacity 0.2s ease',
+                    marginBottom: '12px',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
+                >
+                  <Mail className="w-4 h-4" />
+                  Email Me
+                </button>
+
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.05em' }}>
+                  Response time: 24–48 hours
+                </p>
               </div>
             </div>
           </motion.div>
 
-          {/* Call to action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <p className="text-gray-300 mb-4">Looking forward to hearing from you!</p>
-            <a href="#about" className="inline-flex items-center text-red-500 hover:text-red-400 transition-colors">
-              Back to top
-              <ArrowRight className="w-4 h-4 ml-1" />
-            </a>
-          </motion.div>
         </div>
+
+        {/* Back to top */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          style={{ marginTop: '40px', textAlign: 'center' }}
+        >
+          <p style={{ fontSize: '14px', fontWeight: 300, color: 'rgba(255,255,255,0.4)', marginBottom: '12px' }}>
+            Looking forward to hearing from you!
+          </p>
+          <a href="#about" className="btn-text" style={{ fontSize: '13px' }}>
+            Back to top
+          </a>
+        </motion.div>
       </div>
     </section>
   )
 }
-

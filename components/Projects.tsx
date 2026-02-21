@@ -1,14 +1,9 @@
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import Image from 'next/image';
+"use client"
 
-// Skills object with icons
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Trophy, ExternalLink } from 'lucide-react'
+
 const skills = {
   Languages: [
     { name: 'C', image: '/images/C.png' },
@@ -36,6 +31,10 @@ const skills = {
     { name: 'React', image: '/images/React.png' },
     { name: 'Nextion', image: '/images/Nextion.png' },
     { name: 'Next.js', image: '/images/NextJS.svg' },
+    { name: 'Tailwind', image: '/images/Tailwind.png' },
+    { name: 'Figma', image: '/images/Figma.png' },
+    { name: 'Supabase', image: '/images/Supabase.png' },
+    { name: 'Notion', image: '/images/Notion.png' },
   ],
   DevOps: [
     { name: 'Git', image: '/images/Git.png' },
@@ -44,110 +43,289 @@ const skills = {
     { name: 'CI/CD Pipelines', image: '/images/CICDPipelines.png' },
     { name: 'AWS', image: '/images/AWS.png' },
   ],
-};
+}
 
-// Define the type of the skills object
-type SkillCategory = keyof typeof skills;
-type Skill = { name: string; image: string };
+type SkillCategory = keyof typeof skills
+type Skill = { name: string; image: string }
 
-// Function to find icon for a technology
 const getTechnologyIcon = (tech: string): string | null => {
   for (const category in skills) {
-    const categoryKey = category as SkillCategory;
-    const skill = (skills[categoryKey] as Skill[]).find((item) => item.name === tech);
-    if (skill) return skill.image;
+    const key = category as SkillCategory
+    const skill = (skills[key] as Skill[]).find((item) => item.name === tech)
+    if (skill) return skill.image
   }
-  return null; // Return null if no icon is found
-};
+  return null
+}
+
+// Distinct gradient backgrounds per project
+const PROJECT_GRADIENTS = [
+  'linear-gradient(135deg, #020b18 0%, #0a1628 50%, #0e2040 100%)',   // NeuroDetect — deep midnight blue
+  'linear-gradient(135deg, #0d1a0d 0%, #122912 50%, #1a3d1a 100%)',   // Straights — forest green
+]
 
 export default function Projects() {
-  const projects = [
+  const projects: Array<{
+    title: string
+    description: string
+    technologies: string[]
+    date: string
+    award?: string
+    link?: string
+    image?: string
+  }> = [
     {
-      title: 'Birdie',
-      description: 'A full-stack Android mobile app clone of Twitter using Flutter, FlutterUI, and Firebase. Features include tweeting, liking tweets, profile customization, notifications, messages, and search.',
-      technologies: ['Flutter', 'Firebase', 'React'],
-      date: 'January 2023',
+      title: 'NeuroDetect',
+      description:
+        'AI-powered brain MRI diagnostic assistant that classifies tumor types in real-time with confidence scores and Grad-CAM visual heatmaps, designed to augment radiologist workflows.',
+      technologies: ['Python', 'JavaScript', 'HTML'],
+      date: 'February 2026',
+      award: 'MLH HackHive 2026 · 1st Place Overall',
+      link: 'https://devpost.com/software/neurodetect-rst574',
+      image: '/images/NeuroDetect.png',
     },
     {
       title: 'Straights',
-      description: 'An interactive and fully automated poker-like game playable by 0 to 4 players. Developed in C++ using strict object-oriented programming techniques and the Model-View-Controller (MVC) design pattern.',
-      technologies: ['C++', 'VS-Code'],
+      description:
+        'An interactive and fully automated poker-like game playable by 0 to 4 players. Developed in C++ using strict object-oriented programming techniques and the Model-View-Controller (MVC) design pattern.',
+      technologies: ['C++'],
       date: 'May 2024',
+      link: 'https://github.com/KrishnaKMA/Straights',
     },
-    {
-      title: 'Naan-stop wok',
-      description: 'A fast-food restaurant website where users can order items, create accounts to save favorite orders, and reserve seats. Built with React, Tailwind, and Firebase while adhering to the MVC design pattern.',
-      technologies: ['React', 'Tailwind', 'Firebase'],
-      date: 'December 2023',
-    },
-    {
-      title: 'Reflow Oven',
-      description: 'Oven made with STM-32 microprocessor to control heating for preparing metal to make circuit boards. Built with C for backend, Figma and Nextion for UI, and used Git actions for team access to data.',
-      technologies: ['C', 'Figma', 'Nextion'],
-      date: 'July 2024',
-    },
-    {
-      title: 'Heads-Up Display for FASE car',
-      description: 'Advanced HUD system on ESP32 microcontroller with integrated MPU-6050 sensor to display real-time vehicle metrics. Implemented embedded programming in C++, designed UI using Figma and Nextion, and set up data sharing protocols through Git Actions.',
-      technologies: ['C++', 'Figma', 'Nextion', 'HTML', 'CSS', 'Java'],
-      date: 'September 2024',
-    },
-
-    {
-      title: 'Hillchart embedded into Notion for OpenCore',
-      description: 'Developed a hillchart embedded into Notion so customers can see the progress of the service they have a contract for. they can see the latest updates, add more requirement for the chart and',
-      technologies: ['Next.js', 'Supabase', 'GoogleOAuth', 'Notion',],
-      date: 'Feburary 2025',
-    },
-  ];
+  ]
 
   return (
-    <section id="projects" className="py-20 bg-black">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-8 text-red-600">Projects</h2>
+    <section
+      id="projects"
+      className="section-pad"
+      style={{ background: 'transparent' }}
+    >
+      <div className="porto-container">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '64px' }}
+        >
+          <span className="section-label">Portfolio</span>
+          <h2 className="section-heading">Projects</h2>
+        </motion.div>
 
-        <Carousel className="w-full">
-          <CarouselContent>
-            {projects.map((project, index) => (
-              <CarouselItem key={index}>
-                <div className="p-4">
-                  <Card className="overflow-hidden shadow-md bg-gray-900">
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-semibold mb-2 text-red-600">{project.title}</h3>
-                      <p className="text-white mb-4">{project.date}</p>
-                      <p className="text-white mb-4">{project.description}</p>
-                      <div className="flex flex-wrap gap-4 mt-4">
-                        {project.technologies.map((tech, idx) => {
-                          const icon = getTechnologyIcon(tech);
-                          return (
-                            <div
-                              key={idx}
-                              className="flex items-center justify-center w-32 h-16 bg-white border border-red-600 rounded-full shadow-lg"
-                            >
-                              {icon && (
-                                <Image
-                                  src={icon}
-                                  alt={`${tech} logo`}
-                                  width={30}
-                                  height={30}
-                                  className="mr-2"
-                                />
-                              )}
-                              <span className="text-sm font-semibold text-gray-700">{tech}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </CardContent>
-                  </Card>
+        {/* 3-column card grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '24px' }}>
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+              className="porto-card"
+              style={{ aspectRatio: '3 / 4', position: 'relative' }}
+            >
+              {/* Background — image if available, otherwise gradient */}
+              {project.image ? (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-center"
+                  style={{ zIndex: 0 }}
+                />
+              ) : (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: PROJECT_GRADIENTS[index],
+                    zIndex: 0,
+                  }}
+                />
+              )}
+
+              {/* Award badge — top left */}
+              {project.award && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    left: '16px',
+                    zIndex: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '5px 10px',
+                    background: 'rgba(224,90,58,0.15)',
+                    border: '1px solid rgba(224,90,58,0.4)',
+                    borderRadius: '6px',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <Trophy style={{ width: '12px', height: '12px', color: '#e05a3a' }} />
+                  <span style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.06em', color: '#e05a3a', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                    {project.award}
+                  </span>
                 </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+              )}
+
+              {/* Tech icons — top right */}
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  zIndex: 2,
+                  display: 'flex',
+                  gap: '8px',
+                }}
+              >
+                {project.technologies.slice(0, 2).map((tech, idx) => {
+                  const icon = getTechnologyIcon(tech)
+                  return icon ? (
+                    <div
+                      key={idx}
+                      style={{
+                        width: '36px',
+                        height: '36px',
+                        borderRadius: '10px',
+                        background: 'rgba(255,255,255,0.92)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Image
+                        src={icon}
+                        alt={tech}
+                        width={22}
+                        height={22}
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : null
+                })}
+              </div>
+
+              {/* Bottom-up overlay */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.45) 45%, transparent 100%)',
+                  zIndex: 1,
+                }}
+              />
+
+              {/* Content — bottom center */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '24px 20px',
+                  zIndex: 2,
+                  textAlign: 'center',
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 500,
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    color: '#e05a3a',
+                    marginBottom: '6px',
+                  }}
+                >
+                  {project.date}
+                </p>
+
+                <h3
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: '26px',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    color: '#ffffff',
+                    lineHeight: '1.1',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {project.title}
+                </h3>
+
+                <p
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 300,
+                    color: 'rgba(255,255,255,0.6)',
+                    lineHeight: '1.55',
+                    marginBottom: '14px',
+                  }}
+                >
+                  {project.description}
+                </p>
+
+                {/* Tech tags */}
+                <div
+                  style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '6px',
+                    justifyContent: 'center',
+                    marginBottom: '14px',
+                  }}
+                >
+                  {project.technologies.map((tech, idx) => (
+                    <span key={idx} className="skill-tag">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Link button */}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '7px 16px',
+                      background: 'rgba(224,90,58,0.12)',
+                      border: '1px solid rgba(224,90,58,0.35)',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      color: '#e05a3a',
+                      textDecoration: 'none',
+                      transition: 'background 0.2s ease, border-color 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(224,90,58,0.22)'
+                      ;(e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(224,90,58,0.65)'
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(224,90,58,0.12)'
+                      ;(e.currentTarget as HTMLAnchorElement).style.borderColor = 'rgba(224,90,58,0.35)'
+                    }}
+                  >
+                    View Project
+                    <ExternalLink style={{ width: '11px', height: '11px' }} />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
-  );
+  )
 }

@@ -23,121 +23,243 @@ export default function ExtracurricularActivities() {
 
   const activities: ExtracurricularActivity[] = [
     {
-      name: "Karate",
-      description: "Practicing since grade 5, Coach, athlete, believer in Kaizen philosophy",
+      name: 'Karate',
+      description: 'Practicing since grade 5, Coach, athlete, believer in Kaizen philosophy',
       image: '/images/karate-bg.jpg',
-      additionalInfo: "I am a coach at my Dojo at Kaizen martial arts where I spearhead the training of the competition team alongside my coach Rob Castro. I achieved 1st que brown belt status (One away from black). Multiple medals. Represented team Ontario at Nationals.",
+      additionalInfo:
+        'I am a coach at my Dojo at Kaizen martial arts where I spearhead the training of the competition team alongside my coach Rob Castro. I achieved 1st que brown belt status (One away from black). Multiple medals. Represented team Ontario at Nationals.',
       mediaType: 'video',
       mediaSrc: 'videos/KarateVid.mp4',
-      icon: <Award className="w-8 h-8" />,
-      color: "from-orange-600 to-red-600"
+      icon: <Award className="w-5 h-5" />,
+      color: '#e05a3a',
     },
     {
-      name: "Boxing",
-      description: "Training for 1-2 years, regular practice and following the sport",
+      name: 'Boxing',
+      description: 'Training for 1-2 years, regular practice and following the sport',
       image: '/images/GGG.webp',
-      additionalInfo: "Boxing is something I have loved for a while, I train at my Dojo Kaizen martial arts and in the picture is my favourite boxer Triple GGG aka Gennady Gennadyevich Golovkin.",
+      additionalInfo:
+        'Boxing is something I have loved for a while, I train at my Dojo Kaizen martial arts and in the picture is my favourite boxer Triple GGG aka Gennady Gennadyevich Golovkin.',
       mediaType: 'image',
-      icon: <Boxing className="w-8 h-8" />,
-      color: "from-blue-600 to-indigo-600"
+      icon: <Boxing className="w-5 h-5" />,
+      color: '#4a90d9',
     },
     {
-      name: "Gym",
-      description: "Regular fitness training focused on strength and flexibility",
+      name: 'Gym',
+      description: 'Regular fitness training focused on strength and flexibility',
       image: '/images/GymPhoto.jpeg',
-      additionalInfo: "I go to the gym often to stay on top of my physical fitness, I mostly train for strength because I think being stronger and lifting heavy is impressive and it also helps keep my muscles flexible and loose for sports.",
+      additionalInfo:
+        'I go to the gym often to stay on top of my physical fitness, I mostly train for strength because I think being stronger and lifting heavy is impressive and it also helps keep my muscles flexible and loose for sports.',
       mediaType: 'image',
-      icon: <Dumbbell className="w-8 h-8" />,
-      color: "from-green-600 to-emerald-600"
+      icon: <Dumbbell className="w-5 h-5" />,
+      color: '#44cc88',
     },
     {
-      name: "Gaming",
-      description: "Passionate gamer exploring new titles and competing online",
+      name: 'Gaming',
+      description: 'Passionate gamer exploring new titles and competing online',
       image: '/images/gaming-bg.jpg',
-      additionalInfo: "Gaming is a major hobby for me, and I enjoy playing various genres from strategy to FPS. I also participate in online tournaments and enjoy connecting with the gaming community.",
+      additionalInfo:
+        'Gaming is a major hobby for me, and I enjoy playing various genres from strategy to FPS. I also participate in online tournaments and enjoy connecting with the gaming community.',
       mediaType: 'video',
       mediaSrc: 'videos/GamingClip.mp4',
-      icon: <Gamepad className="w-8 h-8" />,
-      color: "from-purple-600 to-violet-600"
+      icon: <Gamepad className="w-5 h-5" />,
+      color: '#9b59b6',
     },
     {
-      name: "Music",
-      description: "Playing instruments and creating music across different genres",
+      name: 'Music',
+      description: 'Playing instruments and creating music across different genres',
       image: '/images/music-bg.jpg',
-      additionalInfo: "I play guitar and piano, and I also write and produce my own music. I love exploring different genres and experimenting with sounds in my free time, below is one of my favourite acoustic pieces.",
+      additionalInfo:
+        'I play guitar and piano, and I also write and produce my own music. I love exploring different genres and experimenting with sounds in my free time, below is one of my favourite acoustic pieces.',
       mediaType: 'iframe',
-      mediaSrc: "https://www.youtube.com/embed/TpTxdYHLYLo",
-      icon: <Music className="w-8 h-8" />,
-      color: "from-yellow-600 to-amber-600"
+      mediaSrc: 'https://www.youtube.com/embed/TpTxdYHLYLo',
+      icon: <Music className="w-5 h-5" />,
+      color: '#f0c040',
     },
     {
-      name: "Astronomy",
-      description: "Exploring the universe through stargazing and learning about celestial bodies",
+      name: 'Astronomy',
+      description: 'Exploring the universe through stargazing and learning about celestial bodies',
       image: '/images/Astronomy.jpg',
-      additionalInfo: "Astronomy has always fascinated me. I enjoy stargazing and learning about the cosmos. I also have a telescope to observe planets, stars, and galaxies.",
+      additionalInfo:
+        'Astronomy has always fascinated me. I enjoy stargazing and learning about the cosmos. I also have a telescope to observe planets, stars, and galaxies.',
       mediaType: 'image',
-      icon: <Star className="w-8 h-8" />,
-      color: "from-sky-600 to-cyan-600"
+      icon: <Star className="w-5 h-5" />,
+      color: '#40c0d0',
     },
   ]
 
-  const handleVideoLoad = () => {
-    setIsLoading(false)
-  }
+  const handleVideoLoad = () => setIsLoading(false)
 
   return (
-    <section id="extracurricular" className="relative min-h-screen py-20 bg-black overflow-hidden">
-      {/* Background with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900 to-black"></div>
-      
-      {/* Red accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
+    <section
+      id="extracurricular"
+      className="section-pad"
+      style={{ background: 'transparent', position: 'relative' }}
+    >
+      <div className="porto-container">
 
-      {/* Expanded View with Animation */}
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '64px' }}
+        >
+          <span className="section-label">Life Outside Work</span>
+          <h2 className="section-heading">Extracurricular</h2>
+          <p style={{ fontSize: '16px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', maxWidth: '560px', lineHeight: '1.7', marginTop: '16px' }}>
+            Exploring my passions and interests outside of academics and professional work.
+          </p>
+        </motion.div>
+
+        {/* 3-col activity cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" style={{ gap: '24px' }}>
+          {activities.map((activity, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+              className="porto-card"
+              style={{ cursor: 'pointer' }}
+              onClick={() => setExpandedIndex(index)}
+            >
+              {/* Card image */}
+              <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
+                <Image
+                  src={activity.image || '/images/placeholder.jpg'}
+                  alt={activity.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 60%)' }} />
+                {/* Icon badge top-right */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '14px',
+                    right: '14px',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    background: 'rgba(255,255,255,0.92)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#000000',
+                  }}
+                >
+                  {activity.icon}
+                </div>
+              </div>
+
+              {/* Card body */}
+              <div style={{ padding: '20px' }}>
+                <h3
+                  style={{
+                    fontFamily: "'Bebas Neue', sans-serif",
+                    fontSize: '22px',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    color: '#ffffff',
+                    marginBottom: '8px',
+                  }}
+                >
+                  {activity.name}
+                </h3>
+                <p style={{ fontSize: '13px', fontWeight: 300, color: 'rgba(255,255,255,0.55)', lineHeight: '1.6', marginBottom: '16px' }}>
+                  {activity.description}
+                </p>
+                <span className="btn-text" style={{ fontSize: '12px', display: 'inline-flex', alignItems: 'center', gap: '4px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  Learn more
+                  <ChevronRight className="w-3 h-3" />
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox */}
       <AnimatePresence>
         {expandedIndex !== null && (
           <motion.div
-            key="expandedView"
+            key="lightbox"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4 overflow-y-auto"
+            transition={{ duration: 0.25 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.88)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              zIndex: 100,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '24px',
+              overflowY: 'auto',
+            }}
             onClick={() => setExpandedIndex(null)}
           >
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="bg-gray-900 rounded-xl overflow-hidden max-w-5xl w-full shadow-2xl relative"
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
+              style={{
+                background: '#111111',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                maxWidth: '900px',
+                width: '100%',
+                boxShadow: '0 24px 80px rgba(0,0,0,0.8)',
+                position: 'relative',
+              }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
+              {/* Close button */}
+              <button
                 onClick={() => setExpandedIndex(null)}
-                className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-red-600 transition-colors"
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  zIndex: 10,
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'rgba(0,0,0,0.6)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                }}
                 aria-label="Close"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
-              
+
               <div className="flex flex-col md:flex-row">
-                {/* Media Section */}
-                <div className="w-full md:w-1/2 relative bg-black min-h-[300px] flex items-center justify-center">
+                {/* Media */}
+                <div
+                  style={{ background: '#000000', minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}
+                  className="w-full md:w-1/2"
+                >
                   {activities[expandedIndex].mediaType === 'video' && (
                     <>
                       {isLoading && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-10 h-10 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <div style={{ width: '36px', height: '36px', border: '3px solid #e05a3a', borderTopColor: 'transparent', borderRadius: '50%' }} className="animate-spin" />
                         </div>
                       )}
-                      <video 
-                        ref={videoRef}
-                        controls 
-                        className="w-full h-full object-cover max-h-[500px]"
-                        onLoadedData={handleVideoLoad}
-                      >
+                      <video ref={videoRef} controls style={{ width: '100%', maxHeight: '480px', objectFit: 'cover' }} onLoadedData={handleVideoLoad}>
                         <source src={activities[expandedIndex].mediaSrc} type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
@@ -146,48 +268,60 @@ export default function ExtracurricularActivities() {
                   {activities[expandedIndex].mediaType === 'iframe' && (
                     <iframe
                       width="100%"
-                      height="100%"
-                      style={{ minHeight: '300px' }}
+                      height="300"
                       src={activities[expandedIndex].mediaSrc}
                       title={`${activities[expandedIndex].name} Video`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="border-0"
-                    ></iframe>
+                      style={{ border: 'none' }}
+                    />
                   )}
                   {activities[expandedIndex].mediaType === 'image' && activities[expandedIndex].image && (
-                    <Image 
-                      src={activities[expandedIndex].image || "/placeholder.svg"} 
-                      alt={`${activities[expandedIndex].name}`} 
-                      width={800} 
-                      height={600} 
-                      className="w-full h-full object-cover max-h-[500px]"
+                    <Image
+                      src={activities[expandedIndex].image || '/placeholder.svg'}
+                      alt={activities[expandedIndex].name}
+                      width={800}
+                      height={600}
+                      style={{ width: '100%', maxHeight: '480px', objectFit: 'cover' }}
                     />
                   )}
                 </div>
-                
-                {/* Content Section */}
-                <div className="w-full md:w-1/2 p-8 flex flex-col">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${activities[expandedIndex].color} mb-4 p-3 text-white`}>
+
+                {/* Content */}
+                <div style={{ padding: '40px 32px', display: 'flex', flexDirection: 'column' }} className="w-full md:w-1/2">
+                  <div
+                    style={{
+                      width: '48px', height: '48px', borderRadius: '50%',
+                      background: activities[expandedIndex].color,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      color: '#ffffff', marginBottom: '20px',
+                    }}
+                  >
                     {activities[expandedIndex].icon}
                   </div>
-                  
-                  <h3 className="text-3xl font-bold text-white mb-2">{activities[expandedIndex].name}</h3>
-                  
-                  <div className="w-20 h-1 bg-red-600 mb-6"></div>
-                  
-                  <p className="text-gray-300 text-lg mb-4">{activities[expandedIndex].description}</p>
-                  
-                  <div className="bg-black/30 p-4 rounded-lg mb-6">
-                    <p className="text-gray-300">{activities[expandedIndex].additionalInfo}</p>
+
+                  <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '36px', letterSpacing: '0.04em', textTransform: 'uppercase', color: '#ffffff', marginBottom: '4px' }}>
+                    {activities[expandedIndex].name}
+                  </h3>
+                  <div style={{ width: '40px', height: '2px', background: '#e05a3a', marginBottom: '20px' }} />
+
+                  <p style={{ fontSize: '15px', fontWeight: 300, color: 'rgba(255,255,255,0.7)', lineHeight: '1.7', marginBottom: '16px' }}>
+                    {activities[expandedIndex].description}
+                  </p>
+
+                  <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '12px', padding: '16px', marginBottom: '24px' }}>
+                    <p style={{ fontSize: '14px', fontWeight: 300, color: 'rgba(255,255,255,0.6)', lineHeight: '1.7' }}>
+                      {activities[expandedIndex].additionalInfo}
+                    </p>
                   </div>
-                  
+
                   <button
                     onClick={() => setExpandedIndex(null)}
-                    className="mt-auto px-6 py-3 bg-gradient-to-r from-red-700 to-red-600 text-white rounded-lg hover:from-red-800 hover:to-red-700 transition-all duration-300 flex items-center justify-center gap-2 group"
+                    className="btn-text"
+                    style={{ marginTop: 'auto', alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                   >
                     Close
-                    <X className="w-4 h-4 group-hover:rotate-90 transition-transform" />
+                    <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
@@ -195,59 +329,6 @@ export default function ExtracurricularActivities() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Normal View */}
-      <div className="relative container mx-auto px-4 z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Extracurricular <span className="text-red-600">Activities</span></h2>
-          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">Exploring my passions and interests outside of academics and professional work.</p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activities.map((activity, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="relative group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-800 rounded-xl blur-sm opacity-70 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative h-full bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 group-hover:border-red-600 transition-colors">
-                {/* Card Header with Image */}
-                <div className="h-40 relative overflow-hidden">
-                  <Image 
-                    src={activity.image || '/images/placeholder.jpg'} 
-                    alt={activity.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
-                  
-                  {/* Icon */}
-                  <div className={`absolute top-4 right-4 w-12 h-12 rounded-full bg-gradient-to-r ${activity.color} flex items-center justify-center text-white shadow-lg`}>
-                    {activity.icon}
-                  </div>
-                </div>
-                
-                {/* Card Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{activity.name}</h3>
-                  <p className="text-gray-300 mb-4">{activity.description}</p>
-                  
-                  <button 
-                    onClick={() => setExpandedIndex(index)}
-                    className="flex items-center text-red-500 hover:text-red-400 transition-colors font-medium group/btn"
-                  >
-                    Learn more
-                    <ChevronRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </section>
   )
 }

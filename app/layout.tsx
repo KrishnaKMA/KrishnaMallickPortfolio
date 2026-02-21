@@ -3,6 +3,7 @@
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";
+import VantaBackground from "@/components/VantaBackground";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -47,7 +48,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        {/* Fixed particle background — covers entire page */}
+        <VantaBackground />
+
+        {/* All page content scrolls above the fixed background */}
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, Award, Code, PenToolIcon as Tool, Server, ExternalLink, ChevronRight } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { BookOpen, Award, Code, ExternalLink, ChevronRight } from 'lucide-react'
 
 type SkillCategory = 'Languages' | 'Tools' | 'DevOps'
 
 interface Skill {
   name: string
   image: string
-  proficiency?: number // Optional proficiency level out of 100
+  proficiency?: number
 }
 
 interface Certification {
@@ -22,8 +22,8 @@ interface Certification {
 }
 
 export default function Education() {
-  const [activeSkillCategory, setActiveSkillCategory] = useState<SkillCategory>('Languages')
   const [expandedCert, setExpandedCert] = useState<number | null>(null)
+  const [pausedRow, setPausedRow] = useState<number | null>(null)
 
   const education = [
     {
@@ -31,47 +31,24 @@ export default function Education() {
       school: 'Ontario Tech University',
       location: 'Oshawa, ON',
       period: 'Expected April 2027',
-      description: 'Focusing on software design, development, and engineering principles with hands-on co-op experience.',
+      description:
+        'Focusing on software design, development, and engineering principles with hands-on co-op experience.',
       courses: [
         'Data Structures & Algorithms',
         'Object-Oriented Programming',
         'Software Design Patterns',
         'Database Systems',
-      ]
+      ],
     },
   ]
 
   const additionalCourses = [
-    {
-      name: 'Deep Learning',
-      provider: 'Stanford University',
-      type: 'Online Course'
-    },
-    {
-      name: 'iOS App Development',
-      provider: 'Stanford University',
-      type: 'Online Course'
-    },
-    {
-      name: 'Advanced Web Developer Bootcamp',
-      provider: 'Udemy',
-      type: 'Certificate Course'
-    },
-    {
-      name: 'Relational Database Management',
-      provider: 'Online Learning Platform',
-      type: 'Self-paced Course'
-    },
-    {
-      name: 'Data Structures & Algorithms',
-      provider: 'University Course',
-      type: 'Academic Course'
-    },
-    {
-      name: 'Object-Oriented Programming',
-      provider: 'University Course',
-      type: 'Academic Course'
-    },
+    { name: 'Deep Learning', provider: 'Stanford University', type: 'Online Course' },
+    { name: 'iOS App Development', provider: 'Stanford University', type: 'Online Course' },
+    { name: 'Advanced Web Developer Bootcamp', provider: 'Udemy', type: 'Certificate Course' },
+    { name: 'Relational Database Management', provider: 'Online Learning Platform', type: 'Self-paced Course' },
+    { name: 'Data Structures & Algorithms', provider: 'University Course', type: 'Academic Course' },
+    { name: 'Object-Oriented Programming', provider: 'University Course', type: 'Academic Course' },
   ]
 
   const skills: Record<SkillCategory, Skill[]> = {
@@ -128,75 +105,83 @@ export default function Education() {
     },
   ]
 
-  const getCategoryIcon = (category: SkillCategory) => {
-    switch (category) {
-      case 'Languages':
-        return <Code className="w-5 h-5" />
-      case 'Tools':
-        return <Tool className="w-5 h-5" />
-      case 'DevOps':
-        return <Server className="w-5 h-5" />
-    }
-  }
-
   return (
-    <section id="education" className="py-20 bg-black">
-      {/* Red accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-      
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Education & <span className="text-red-600">Skills</span></h2>
-          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">My academic background, technical skills, and professional certifications.</p>
-        </div>
+    <section id="education" className="section-pad" style={{ background: 'transparent' }}>
+      <div className="porto-container">
+
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '64px' }}
+        >
+          <span className="section-label">Background</span>
+          <h2 className="section-heading">Education &amp; Skills</h2>
+          <p style={{ fontSize: '16px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', maxWidth: '560px', lineHeight: '1.7', marginTop: '16px' }}>
+            My academic background, technical skills, and professional certifications.
+          </p>
+        </motion.div>
 
         {/* Formal Education */}
-        <div className="mb-20">
-          <div className="flex items-center mb-8">
-            <BookOpen className="text-red-600 w-6 h-6 mr-3" />
-            <h3 className="text-2xl font-bold text-white">Formal Education</h3>
+        <div style={{ marginBottom: '72px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '28px' }}>
+            <BookOpen style={{ color: '#e05a3a', width: '20px', height: '20px' }} />
+            <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', letterSpacing: '0.05em', color: '#ffffff' }}>
+              Formal Education
+            </h3>
           </div>
-          
+
           {education.map((edu, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-900 rounded-xl overflow-hidden shadow-lg border border-gray-800"
+              className="porto-card-flat"
             >
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/4 bg-gradient-to-br from-gray-800 to-black p-6 flex items-center justify-center">
+                <div
+                  style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    padding: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRight: '1px solid rgba(255,255,255,0.06)',
+                    flexShrink: 0,
+                  }}
+                  className="md:w-48"
+                >
                   <Image
                     src="/images/otu.png"
                     alt="Ontario Tech University logo"
-                    width={180}
-                    height={180}
+                    width={140}
+                    height={140}
                     className="object-contain"
                   />
                 </div>
-                <div className="md:w-3/4 p-6">
-                  <h4 className="text-xl font-bold text-white mb-2">{edu.degree}</h4>
-                  <div className="flex flex-wrap items-center text-gray-300 mb-4">
-                    <span className="mr-3">{edu.school}, {edu.location}</span>
-                    <span className="px-3 py-1 bg-red-600/20 text-red-400 rounded-full text-sm">
+                <div style={{ padding: '28px' }}>
+                  <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#ffffff', marginBottom: '10px' }}>
+                    {edu.degree}
+                  </h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                    <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)' }}>
+                      {edu.school}, {edu.location}
+                    </span>
+                    <span style={{ padding: '3px 12px', background: 'rgba(224,90,58,0.12)', border: '1px solid rgba(224,90,58,0.25)', borderRadius: '4px', fontSize: '12px', color: '#e05a3a', letterSpacing: '0.05em' }}>
                       {edu.period}
                     </span>
                   </div>
-                  <p className="text-gray-400 mb-4">{edu.description}</p>
-                  
-                  <div className="mt-4">
-                    <h5 className="text-sm font-semibold text-gray-300 mb-2">Key Courses:</h5>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.courses.map((course, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">
-                          {course}
-                        </span>
-                      ))}
-                    </div>
+                  <p style={{ fontSize: '14px', fontWeight: 300, color: 'rgba(255,255,255,0.5)', marginBottom: '16px', lineHeight: '1.65' }}>
+                    {edu.description}
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {edu.courses.map((course, idx) => (
+                      <span key={idx} className="skill-tag">{course}</span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -205,32 +190,33 @@ export default function Education() {
         </div>
 
         {/* Additional Courses */}
-        <div className="mb-20">
-          <div className="flex items-center mb-8">
-            <BookOpen className="text-red-600 w-6 h-6 mr-3" />
-            <h3 className="text-2xl font-bold text-white">Additional Coursework</h3>
+        <div style={{ marginBottom: '72px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '28px' }}>
+            <BookOpen style={{ color: '#e05a3a', width: '20px', height: '20px' }} />
+            <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', letterSpacing: '0.05em', color: '#ffffff' }}>
+              Additional Coursework
+            </h3>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3" style={{ gap: '16px' }}>
             {additionalCourses.map((course, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="bg-gray-900 rounded-lg p-5 border border-gray-800 hover:border-red-600/50 transition-colors"
+                transition={{ duration: 0.3, delay: index * 0.07 }}
+                className="porto-card-flat"
+                style={{ padding: '20px' }}
               >
-                <div className="flex items-start">
-                  <div className="bg-red-600/20 rounded-full p-2 mr-4">
-                    <BookOpen className="w-5 h-5 text-red-500" />
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(224,90,58,0.1)', border: '1px solid rgba(224,90,58,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <BookOpen style={{ width: '16px', height: '16px', color: '#e05a3a' }} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">{course.name}</h4>
-                    <p className="text-gray-400">{course.provider}</p>
-                    <span className="inline-block mt-2 px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">
-                      {course.type}
-                    </span>
+                    <h4 style={{ fontSize: '15px', fontWeight: 500, color: '#ffffff', marginBottom: '4px' }}>{course.name}</h4>
+                    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)', marginBottom: '8px' }}>{course.provider}</p>
+                    <span className="skill-tag">{course.type}</span>
                   </div>
                 </div>
               </motion.div>
@@ -238,86 +224,98 @@ export default function Education() {
           </div>
         </div>
 
-        {/* Skills */}
-        <div className="mb-20">
-          <div className="flex items-center mb-8">
-            <Code className="text-red-600 w-6 h-6 mr-3" />
-            <h3 className="text-2xl font-bold text-white">Technical Skills</h3>
+        {/* Technical Skills */}
+        <div style={{ marginBottom: '72px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
+            <Code style={{ color: '#e05a3a', width: '20px', height: '20px' }} />
+            <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', letterSpacing: '0.05em', color: '#ffffff' }}>
+              Technical Skills
+            </h3>
           </div>
-          
-          <div className="bg-gray-900 rounded-xl overflow-hidden border border-gray-800 mb-8">
-            <div className="flex flex-wrap border-b border-gray-800">
-              {Object.keys(skills).map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveSkillCategory(category as SkillCategory)}
-                  className={`flex items-center px-6 py-4 text-sm font-medium transition-colors ${
-                    activeSkillCategory === category
-                      ? 'bg-red-600/10 text-red-500 border-b-2 border-red-600'
-                      : 'text-gray-400 hover:text-gray-300 hover:bg-gray-800'
-                  }`}
+
+          {(
+            [
+              { key: 'Languages' as SkillCategory, direction: 'left', duration: '35s' },
+              { key: 'Tools' as SkillCategory, direction: 'right', duration: '28s' },
+              { key: 'DevOps' as SkillCategory, direction: 'left', duration: '22s' },
+            ] as Array<{ key: SkillCategory; direction: 'left' | 'right'; duration: string }>
+          ).map(({ key, direction, duration }, rowIndex) => {
+            const categorySkills = skills[key]
+            // Ensure enough copies so the total track width >> container width for seamless loop
+            const rawMult = Math.ceil(3000 / (categorySkills.length * 104))
+            const multiplier = rawMult % 2 === 0 ? Math.max(2, rawMult) : Math.max(2, rawMult + 1)
+            const items = Array.from({ length: multiplier }, () => categorySkills).flat()
+
+            return (
+              <div key={key} style={{ marginBottom: '32px' }}>
+                {/* Category label */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
+                  <Code style={{ color: '#e05a3a', width: '14px', height: '14px' }} />
+                  <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '0.12em', color: '#e05a3a', textTransform: 'uppercase' }}>
+                    {key}
+                  </span>
+                </div>
+
+                {/* Marquee row */}
+                <div
+                  style={{
+                    overflow: 'hidden',
+                    WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                    maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                  }}
+                  onMouseEnter={() => setPausedRow(rowIndex)}
+                  onMouseLeave={() => setPausedRow(null)}
                 >
-                  {getCategoryIcon(category as SkillCategory)}
-                  <span className="ml-2">{category}</span>
-                </button>
-              ))}
-            </div>
-            
-            <div className="p-6">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeSkillCategory}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6"
-                >
-                  {skills[activeSkillCategory].map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      className="group"
-                    >
-                      <div className="bg-gray-800 rounded-lg p-4 flex flex-col items-center hover:bg-gray-750 transition-colors">
-                        <div className="relative w-12 h-12 mb-3 flex items-center justify-center">
-                          <Image
-                            src={skill.image || "/placeholder.svg"}
-                            alt={`${skill.name} logo`}
-                            width={48}
-                            height={48}
-                            className="object-contain"
-                          />
-                        </div>
-                        <h4 className="text-sm font-medium text-white mb-2">{skill.name}</h4>
-                        
-                        {skill.proficiency && (
-                          <div className="w-full bg-gray-700 rounded-full h-1.5 mt-1">
-                            <div 
-                              className="bg-gradient-to-r from-red-600 to-red-500 h-1.5 rounded-full"
-                              style={{ width: `${skill.proficiency}%` }}
-                            ></div>
-                          </div>
-                        )}
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '16px',
+                      width: 'max-content',
+                      animation: `${direction === 'left' ? 'marquee-left' : 'marquee-right'} ${duration} linear infinite`,
+                      animationPlayState: pausedRow === rowIndex ? 'paused' : 'running',
+                      paddingBottom: '4px',
+                    }}
+                  >
+                    {items.map((skill, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: '72px',
+                          height: '72px',
+                          flexShrink: 0,
+                          userSelect: 'none',
+                        }}
+                      >
+                        <Image
+                          src={skill.image || '/placeholder.svg'}
+                          alt={skill.name}
+                          width={56}
+                          height={56}
+                          className="object-contain"
+                          style={{ width: '56px', height: '56px' }}
+                        />
                       </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Certifications */}
         <div>
-          <div className="flex items-center mb-8">
-            <Award className="text-red-600 w-6 h-6 mr-3" />
-            <h3 className="text-2xl font-bold text-white">Certifications</h3>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '28px' }}>
+            <Award style={{ color: '#e05a3a', width: '20px', height: '20px' }} />
+            <h3 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', letterSpacing: '0.05em', color: '#ffffff' }}>
+              Certifications
+            </h3>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '20px' }}>
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
@@ -325,61 +323,48 @@ export default function Education() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className={`bg-gray-900 rounded-xl overflow-hidden border border-gray-800 hover:border-red-600/50 transition-all duration-300 ${
-                  expandedCert === index ? 'ring-2 ring-red-600' : ''
-                }`}
+                className="porto-card-flat"
+                style={expandedCert === index ? { borderColor: 'rgba(224,90,58,0.4)' } : {}}
               >
-                <div className="p-6">
-                  <div className="flex items-start justify-between">
+                <div style={{ padding: '24px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                     <div>
-                      <h4 className="text-xl font-bold text-white mb-2">{cert.name}</h4>
-                      <div className="flex flex-wrap items-center text-gray-400 mb-4">
-                        <span className="mr-3">Issued by: {cert.issuedBy}</span>
-                        <span className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs">
-                          {cert.issuedDate}
-                        </span>
+                      <h4 style={{ fontSize: '17px', fontWeight: 600, color: '#ffffff', marginBottom: '6px' }}>
+                        {cert.name}
+                      </h4>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)' }}>Issued by: {cert.issuedBy}</span>
+                        <span className="skill-tag">{cert.issuedDate}</span>
                       </div>
                     </div>
-                    <div className="bg-red-600/20 rounded-full p-2">
-                      <Award className="w-5 h-5 text-red-500" />
+                    <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(224,90,58,0.1)', border: '1px solid rgba(224,90,58,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Award style={{ width: '16px', height: '16px', color: '#e05a3a' }} />
                     </div>
                   </div>
-                  
-                  <div 
-                    className={`overflow-hidden transition-all duration-300 ${
-                      expandedCert === index ? 'max-h-96' : 'max-h-0'
-                    }`}
-                  >
-                    <div className="mt-4 bg-black/30 rounded-lg overflow-hidden">
-                      <Image
-                        src={cert.image || "/placeholder.svg"}
-                        alt={`${cert.name} Certificate`}
-                        width={600}
-                        height={400}
-                        className="w-full object-contain"
-                      />
+
+                  <div style={{ overflow: 'hidden', maxHeight: expandedCert === index ? '400px' : '0', transition: 'max-height 0.35s ease', marginBottom: expandedCert === index ? '16px' : '0' }}>
+                    <div style={{ borderRadius: '8px', overflow: 'hidden', background: 'rgba(0,0,0,0.3)' }}>
+                      <Image src={cert.image || '/placeholder.svg'} alt={`${cert.name} Certificate`} width={600} height={400} className="w-full object-contain" />
                     </div>
                   </div>
-                  
-                  <div className="mt-4 flex items-center justify-between">
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <button
                       onClick={() => setExpandedCert(expandedCert === index ? null : index)}
-                      className="text-red-500 hover:text-red-400 transition-colors text-sm font-medium flex items-center"
+                      className="btn-text"
+                      style={{ fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}
                     >
                       {expandedCert === index ? 'Hide Certificate' : 'View Certificate'}
-                      <ChevronRight className={`w-4 h-4 ml-1 transition-transform ${
-                        expandedCert === index ? 'rotate-90' : ''
-                      }`} />
+                      <ChevronRight style={{ width: '14px', height: '14px', transform: expandedCert === index ? 'rotate(90deg)' : 'none', transition: 'transform 0.2s ease' }} />
                     </button>
-                    
                     <a
                       href={cert.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-blue-500 hover:text-blue-400 transition-colors text-sm"
+                      style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: '#4a90d9', textDecoration: 'none' }}
                     >
                       Verify
-                      <ExternalLink className="w-3 h-3 ml-1" />
+                      <ExternalLink style={{ width: '12px', height: '12px' }} />
                     </a>
                   </div>
                 </div>
@@ -387,6 +372,7 @@ export default function Education() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )

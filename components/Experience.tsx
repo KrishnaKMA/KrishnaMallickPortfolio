@@ -1,65 +1,65 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp, MapPin, Calendar, Briefcase } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { MapPin, Calendar } from 'lucide-react'
 
 export default function Experience() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start 80%', 'end 20%'],
+  })
+
+  const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   const experiences = [
     {
-      company: 'OpenCore Group',
-      position: 'Software Developer Trainee',
-      period: 'February 2025 - Present',
+      company: 'DigiWell Marketing',
+      position: 'AI/ML Engineer (Riipen)',
+      period: 'January 2026 - Present',
       location: 'Remote',
-      logo: '/images/OpenCore.png',
-      description: [
-        'Developing a hillchart embedded into Notion so customers can see the progress of the service they have a contract for, using Next.js.',
-      ],
-      skills: ['Next.js', 'React', 'JavaScript', 'Notion API'],
-      color: '#FF4500'
+      logo: '/images/Digiwell.png',
+      skills: [],
+      color: '#2ecc71',
+    },
+    {
+      company: 'EdVisingU',
+      position: 'Technical / Operations Lead (Riipen Labs)',
+      period: 'January 2026 - February 2026',
+      location: 'Remote',
+      logo: '/images/EdVisingU.jpg',
+      skills: [],
+      color: '#3498db',
+    },
+    {
+      company: 'CI-Tech',
+      position: 'VP of External',
+      period: 'November 2025 - Present',
+      location: 'Oshawa, ON',
+      logo: '/images/CiTech.jpg',
+      skills: [],
+      color: '#e05a3a',
     },
     {
       company: 'Wouessi Digital',
-      position: 'Software Developer Intern',
+      position: 'Software Engineering Intern',
       period: 'March 2025 - May 2025',
       location: 'Remote',
       logo: '/images/Wouessi.webp',
-      description: [
-        'Developed the Tender Discovery Platform (TDP) with a 7-person team using HTML, CSS, JavaScript, Kubernetes, and Jenkins, Visualized 5+ years of procurement data , reducing manual analysis, Created interactive dashboards across 15+ categories and optimized CI/CD pipelines to reduce release time',
-      ],
-      skills: ['HTML', 'CSS', 'JavaScript', 'Kuberntes', 'Jenkins'],
-      color: '#FF4500'
+      skills: ['HTML', 'CSS', 'JavaScript', 'Kubernetes', 'Jenkins'],
+      color: '#e05a3a',
     },
     {
-      company: 'Ontario Tech Space and Rocketry',
-      position: 'Software Developer',
-      period: 'October 2024 - March 2025',
-      location: 'Oshawa, ON',
-      logo: '/images/ot-space.png',
-      description: [
-        'Part of the Software department that focused on data storage from launches and predictive modeling using various programming languages.',
-        'Also in the futere planned on assisting in the avionics department to gain experience with embedded systems in rockets.',
-        'assited in updates for website'
-      ],
-      skills: ['Data Storage', 'Predictive Modeling', 'Embedded Systems'],
-      color: '#0066CC'
-    },
-    {
-      company: 'Ontario Tech Racing',
-      position: 'Embedded Software Engineer',
-      period: 'July 2024 - March 2025',
-      location: 'Oshawa, ON',
-      logo: '/images/otr-logo.png',
-      description: [
-        'Designed and built STM32 and NXP S32K-based electronic systems such as reflow ovens, HUDs, and ECUs for vehicle subsystems.',
-        'Developed a personal HUD with an ESP32 microprocessor, figma for front end, integrating it with SolidWorks.',
-        'Learned (But not applied) how to program various microprocessors for DAQ and sub vechicle systems'
-      ],
-      skills: ['STM32', 'NXP S32K', 'CI/CD', 'GitHub Actions', 'ESP32', 'SolidWorks'],
-      color: '#00CC66'
+      company: 'OpenCore Group',
+      position: 'Software Engineering Intern',
+      period: 'January 2025 - September 2025',
+      location: 'Remote',
+      logo: '/images/OpenCore.png',
+      skills: ['Next.js', 'React', 'JavaScript', 'Notion API'],
+      color: '#e05a3a',
     },
     {
       company: 'Blueprint',
@@ -67,14 +67,26 @@ export default function Experience() {
       period: 'November 2024 - Present',
       location: 'Oshawa, ON',
       logo: '/images/Blueprint.png',
-      description: [
-        'assisting on the development of websites for NPOs using next.js and various other tools ',
-        'helped Develop the front end of the company website using Next.js to improve user experience.',
-        'Implemented dynamic content updates and interactive features using React.js, optimizing performance and responsiveness.',
-        'Learning and applying the core values of the company while using tech for social good.',
-      ],
       skills: ['Next.js', 'React.js', 'Front-end Development', 'UI/UX'],
-      color: '#9933CC'
+      color: '#9b59b6',
+    },
+    {
+      company: 'Ontario Tech Space and Rocketry',
+      position: 'Software Developer',
+      period: 'October 2024 - March 2025',
+      location: 'Oshawa, ON',
+      logo: '/images/ot-space.png',
+      skills: ['Data Storage', 'Predictive Modeling', 'Embedded Systems'],
+      color: '#4a90d9',
+    },
+    {
+      company: 'Ontario Tech Racing',
+      position: 'Embedded Software Engineer',
+      period: 'July 2024 - March 2025',
+      location: 'Oshawa, ON',
+      logo: '/images/otr-logo.png',
+      skills: ['STM32', 'NXP S32K', 'CI/CD', 'GitHub Actions', 'ESP32', 'SolidWorks'],
+      color: '#44cc88',
     },
     {
       company: 'SIGMA Metals Co.',
@@ -82,142 +94,300 @@ export default function Experience() {
       period: 'March 2021 - September 2021',
       location: 'Brampton, ON',
       logo: '/images/SigmaMetals.jpg',
-      description: [
-        'Optimized precision machinery using G-code, increasing production efficiency by 25% and reducing setup time by 15%.',
-        'Operated heavy machinery, producing high-accuracy parts for multiple suppliers with a 99.9% quality standard.',
-        'Developed and optimized CNC programs, improving efficiency by 20% and reducing material waste by 15%.',
-      ],
       skills: ['G-code', 'CNC Programming', 'Precision Machinery', 'Quality Control'],
-      color: '#FF6600'
+      color: '#e67e22',
     },
   ]
 
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index)
-  }
-
   return (
-    <section id="experience" className="relative py-20 bg-gradient-to-b from-black via-gray-900 to-black border-b border-red-600">
-      {/* Red accent lines */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-red-800 via-red-600 to-red-800"></div>
+    <section
+      id="experience"
+      className="section-pad"
+      style={{ background: 'transparent' }}
+      ref={sectionRef}
+    >
+      <div className="porto-container">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '80px' }}
+        >
+          <span className="section-label">Career</span>
+          <h2 className="section-heading">Experience</h2>
+          <p
+            style={{
+              fontSize: '16px',
+              fontWeight: 300,
+              color: 'rgba(255,255,255,0.5)',
+              maxWidth: '560px',
+              lineHeight: '1.7',
+              marginTop: '16px',
+            }}
+          >
+            My journey through various roles and organizations, building expertise in software development and
+            engineering.
+          </p>
+        </motion.div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Professional <span className="text-red-600">Experience</span></h2>
-          <div className="w-24 h-1 bg-red-600 mx-auto"></div>
-          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">My journey through various roles and organizations, building expertise in software development and engineering.</p>
-        </div>
+        {/* Timeline */}
+        <div
+          style={{
+            position: 'relative',
+          }}
+        >
+          {/* Center line — faint static track */}
+          <div
+            className="timeline-center-line"
+            style={{
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              width: '1px',
+              background: 'rgba(255,255,255,0.08)',
+            }}
+          />
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 w-1 bg-gradient-to-b from-red-800 via-red-600 to-red-800 h-full rounded-full hidden sm:block"></div>
+          {/* Animated fill line */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              top: 0,
+              width: '1px',
+              background: 'linear-gradient(to bottom, #e05a3a, rgba(224,90,58,0.2))',
+              scaleY: lineScaleY,
+              transformOrigin: 'top',
+              height: '100%',
+            }}
+            className="timeline-center-line"
+          />
 
-          {experiences.map((exp, index) => (
-            <div key={index} className="mb-12 relative">
-              <div className={`flex flex-col sm:flex-row items-center ${index % 2 === 0 ? 'sm:flex-row-reverse' : ''}`}>
-                {/* Timeline dot */}
-                <div className="absolute left-0 sm:left-1/2 transform sm:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-red-600 bg-black z-10 hidden sm:block"></div>
-                
-                {/* Content card */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className={`w-full sm:w-5/12 ${index % 2 === 0 ? 'sm:pl-12' : 'sm:pr-12'}`}
+          {/* Entries */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0',
+            }}
+          >
+            {experiences.map((exp, index) => {
+              const isLeft = index % 2 === 0
+
+              return (
+                <div
+                  key={index}
+                  className="timeline-entry"
+                  style={{
+                    position: 'relative',
+                    display: 'grid',
+                    paddingBottom: index < experiences.length - 1 ? '56px' : '0',
+                  }}
                 >
-                  <div 
-                    className={`bg-gray-800 rounded-xl shadow-lg overflow-hidden border-l-4`}
-                    style={{ borderColor: exp.color }}
+                  {/* Glowing dot on center line */}
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.4, delay: 0.1 }}
+                    className="timeline-dot-pulse"
+                    style={{
+                      position: 'absolute',
+                      top: '28px',
+                      width: '14px',
+                      height: '14px',
+                      borderRadius: '50%',
+                      background: exp.color,
+                      zIndex: 3,
+                    }}
+                    // Positioned via CSS class
+                  />
+
+                  {/* Card */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-60px' }}
+                    transition={{ duration: 0.55, ease: 'easeOut', delay: 0.05 }}
+                    whileHover={{ boxShadow: '0 0 30px rgba(224,90,58,0.18)' }}
+                    className={`timeline-card ${isLeft ? 'timeline-card-left' : 'timeline-card-right'}`}
+                    style={{
+                      background: 'rgba(0,0,0,0.5)',
+                      backdropFilter: 'blur(8px)',
+                      WebkitBackdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      transition: 'box-shadow 0.3s ease',
+                    }}
                   >
-                    {/* Card header */}
-                    <div className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden bg-gray-700 p-0.5">
+                    {/* Two-column header */}
+                    <div className="exp-card-inner">
+                      {/* Left — logo */}
+                      <div className="exp-card-logo-col">
+                        <div
+                          style={{
+                            position: 'relative',
+                            width: '52px',
+                            height: '52px',
+                            borderRadius: '10px',
+                            overflow: 'hidden',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(255,255,255,0.1)',
+                            flexShrink: 0,
+                          }}
+                        >
                           <Image
-                            src={exp.logo || "/placeholder.svg"}
+                            src={exp.logo}
                             alt={`${exp.company} logo`}
                             fill
-                            className="object-cover rounded-full"
+                            className="object-contain"
                           />
                         </div>
-                        <div className="flex-grow">
-                          <h3 className="text-xl font-bold text-white">{exp.position}</h3>
-                          <h4 className="text-lg font-medium text-red-500">{exp.company}</h4>
-                          
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mt-2 text-sm text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="w-4 h-4" />
-                              <span>{exp.period}</span>
-                            </div>
-                            <div className="hidden sm:block text-gray-500">•</div>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              <span>{exp.location}</span>
-                            </div>
-                          </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div style={{ width: '1px', background: 'rgba(255,255,255,0.08)', alignSelf: 'stretch', flexShrink: 0 }} />
+
+                      {/* Right — info */}
+                      <div style={{ flex: 1, minWidth: 0, padding: '16px 18px' }}>
+                        <h3
+                          style={{
+                            fontSize: '15px',
+                            fontWeight: 600,
+                            color: '#ffffff',
+                            marginBottom: '3px',
+                            lineHeight: '1.3',
+                          }}
+                        >
+                          {exp.position}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: '13px',
+                            fontWeight: 500,
+                            color: '#e05a3a',
+                            marginBottom: '8px',
+                          }}
+                        >
+                          {exp.company}
+                        </p>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            gap: '10px',
+                            fontSize: '11px',
+                            color: 'rgba(255,255,255,0.38)',
+                          }}
+                        >
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Calendar style={{ width: '11px', height: '11px' }} />
+                            {exp.period}
+                          </span>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <MapPin style={{ width: '11px', height: '11px' }} />
+                            {exp.location}
+                          </span>
                         </div>
                       </div>
-                      
-                      <button 
-                        onClick={() => toggleExpand(index)}
-                        className="mt-4 w-full flex items-center justify-between px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md text-white transition-colors"
-                      >
-                        <span className="flex items-center gap-2">
-                          <Briefcase className="w-4 h-4" />
-                          <span>Responsibilities</span>
-                        </span>
-                        {expandedIndex === index ? (
-                          <ChevronUp className="w-5 h-5" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5" />
-                        )}
-                      </button>
                     </div>
-                    
-                    {/* Expandable content */}
-                    <AnimatePresence>
-                      {expandedIndex === index && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-6 pb-6">
-                            <ul className="space-y-2 text-gray-300 list-disc pl-5">
-                              {exp.description.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
-                            
-                            <div className="mt-4">
-                              <h5 className="text-sm font-medium text-gray-400 mb-2">Skills & Technologies</h5>
-                              <div className="flex flex-wrap gap-2">
-                                {exp.skills.map((skill, i) => (
-                                  <span 
-                                    key={i} 
-                                    className="px-2 py-1 bg-gray-700 text-xs rounded-full text-gray-300"
-                                    style={{ borderLeft: `2px solid ${exp.color}` }}
-                                  >
-                                    {skill}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          ))}
+
+                    {/* Skills — below header, full width */}
+                    {exp.skills.length > 0 && (
+                      <div
+                        style={{
+                          borderTop: '1px solid rgba(255,255,255,0.06)',
+                          padding: '12px 18px',
+                          display: 'flex',
+                          flexWrap: 'wrap',
+                          gap: '5px',
+                        }}
+                      >
+                        {exp.skills.map((skill, i) => (
+                          <span key={i} className="skill-tag">{skill}</span>
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
+
+      {/* Timeline layout styles */}
+      <style>{`
+        .timeline-center-line {
+          left: calc(50% - 0.5px);
+        }
+
+        .timeline-dot-pulse {
+          left: calc(50% - 7px);
+        }
+
+        .timeline-entry {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .timeline-card-left {
+          grid-column: 1;
+          margin-right: 40px;
+        }
+
+        .timeline-card-right {
+          grid-column: 2;
+          margin-left: 40px;
+        }
+
+        /* Card inner two-column layout */
+        .exp-card-inner {
+          display: flex;
+          align-items: stretch;
+        }
+
+        .exp-card-logo-col {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 88px;
+          flex-shrink: 0;
+          padding: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .timeline-center-line {
+            left: 14px;
+          }
+
+          .timeline-dot-pulse {
+            left: 7px;
+          }
+
+          .timeline-entry {
+            grid-template-columns: 1fr;
+          }
+
+          .timeline-card-left,
+          .timeline-card-right {
+            grid-column: 1;
+            margin-left: 48px;
+            margin-right: 0;
+          }
+
+          .exp-card-inner {
+            flex-direction: column;
+          }
+
+          .exp-card-logo-col {
+            width: 100%;
+            justify-content: flex-start;
+            padding: 16px 18px 0;
+          }
+        }
+      `}</style>
     </section>
   )
 }
