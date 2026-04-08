@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  experimental: {
+    instrumentationHook: true,
+  },
   webpack(config, { isServer }) {
     // Add rule for handling .mp4 files using file-loader
     config.module.rules.push({

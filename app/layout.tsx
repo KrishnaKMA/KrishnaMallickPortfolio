@@ -1,5 +1,3 @@
-'use client'
-
 import localFont from "next/font/local";
 import Script from "next/script";
 import "./globals.css";

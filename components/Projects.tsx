@@ -61,6 +61,7 @@ const getTechnologyIcon = (tech: string): string | null => {
 const PROJECT_GRADIENTS = [
   'linear-gradient(135deg, #020b18 0%, #0a1628 50%, #0e2040 100%)',   // NeuroDetect — deep midnight blue
   'linear-gradient(135deg, #0d1a0d 0%, #122912 50%, #1a3d1a 100%)',   // Straights — forest green
+  'linear-gradient(135deg, #0d0a1a 0%, #1a1030 50%, #2a1a4a 100%)',   // ClaimShield — deep purple
 ]
 
 export default function Projects() {
@@ -90,6 +91,16 @@ export default function Projects() {
       technologies: ['C++'],
       date: 'May 2024',
       link: 'https://github.com/KrishnaKMA/Straights',
+    },
+    {
+      title: 'ClaimShield',
+      description:
+        'AI-powered insurance fraud detection platform that uncovers hidden fraud rings using a GraphSAGE GNN and Isolation Forest. Explains each risk score with evidence-backed narratives and auto-generates investigator-ready reports.',
+      technologies: ['Python', 'React', 'TypeScript'],
+      date: 'April 2026',
+      award: 'IBM watsonx Hackathon',
+      link: 'https://github.com/KrishnaKMA/AI-Real-time-Fraud-Detector',
+      image: '/images/ClaimShield.png',
     },
   ]
 
