@@ -46,7 +46,7 @@ export default function ExtracurricularActivities() {
     {
       name: 'Gym',
       description: 'Regular fitness training focused on strength and flexibility',
-      image: '/images/GymPhoto.jpeg',
+      image: '/images/GymPhotos.jpg',
       additionalInfo:
         'I go to the gym often to stay on top of my physical fitness, I mostly train for strength because I think being stronger and lifting heavy is impressive and it also helps keep my muscles flexible and loose for sports.',
       mediaType: 'image',
