@@ -44,6 +44,15 @@ export default function Experience() {
       color: '#e05a3a',
     },
     {
+      company: 'Mindfully',
+      position: 'Software & Deep Learning Engineer',
+      period: 'August 2025 - Present',
+      location: 'Remote',
+      logo: '/images/Mindfully.png',
+      skills: [],
+      color: '#7c3aed',
+    },
+    {
       company: 'Wouessi Digital',
       position: 'Software Engineering Intern',
       period: 'March 2025 - May 2025',
