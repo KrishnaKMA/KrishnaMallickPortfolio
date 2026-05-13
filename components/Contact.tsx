@@ -4,19 +4,48 @@ import { Mail, LucideLinkedin, LucideGithub, Copy, CheckCircle } from "lucide-re
 import { useState } from "react"
 import { motion } from "framer-motion"
 
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '10px 14px',
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.1)',
+  borderRadius: '8px',
+  fontSize: '13px',
+  color: '#ffffff',
+  outline: 'none',
+  boxSizing: 'border-box',
+}
+
 export default function Contact() {
   const [copied, setCopied] = useState(false)
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const email = "krishnamallick46@hotmail.com"
-  const subject = "Portfolio Contact"
-
-  const handleEmailClick = () => {
-    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`
-  }
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('sent')
+        setForm({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   const socialLinks = [
@@ -155,61 +184,93 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Right — CTA */}
-              <div
-                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', paddingTop: '32px' }}
-                className="md:pl-12 md:pt-0"
-              >
-                {/* Mail icon ring */}
-                <div
-                  style={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: '50%',
-                    border: '1px solid rgba(224,90,58,0.35)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '24px',
-                    background: 'rgba(224,90,58,0.08)',
-                  }}
-                >
-                  <Mail style={{ width: '32px', height: '32px', color: '#e05a3a' }} />
-                </div>
-
-                <button
-                  onClick={handleEmailClick}
-                  style={{
-                    padding: '14px 32px',
-                    background: 'linear-gradient(135deg, #c0392b, #e05a3a)',
-                    border: 'none',
-                    borderRadius: '0',
-                    color: '#ffffff',
-                    fontSize: '14px',
-                    fontWeight: 500,
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    transition: 'opacity 0.2s ease',
-                    marginBottom: '12px',
-                  }}
-                  onMouseEnter={(e) => { e.currentTarget.style.opacity = '0.85' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.opacity = '1' }}
-                >
-                  <Mail className="w-4 h-4" />
-                  Email Me
-                </button>
-
-                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.3)', letterSpacing: '0.05em' }}>
-                  Response time: 24–48 hours
-                </p>
+              {/* Right — contact form */}
+              <div className="md:pl-12 md:pt-0" style={{ flex: 1, paddingTop: '32px' }}>
+                {status === 'sent' ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: '12px', textAlign: 'center' }}>
+                    <CheckCircle style={{ width: '40px', height: '40px', color: '#44cc88' }} />
+                    <p style={{ fontSize: '15px', fontWeight: 500, color: '#ffffff' }}>Message sent!</p>
+                    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>I&apos;ll get back to you within 24–48 hours.</p>
+                    <button onClick={() => setStatus('idle')} style={{ marginTop: '8px', fontSize: '12px', color: '#e05a3a', background: 'none', border: 'none', cursor: 'pointer' }}>
+                      Send another
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    <div>
+                      <label htmlFor="contact-name" style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: '6px' }}>
+                        Name
+                      </label>
+                      <input
+                        id="contact-name"
+                        type="text"
+                        required
+                        placeholder="Your name"
+                        value={form.name}
+                        onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                        style={inputStyle}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-email" style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: '6px' }}>
+                        Email
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        required
+                        placeholder="your@email.com"
+                        value={form.email}
+                        onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                        style={inputStyle}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="contact-message" style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', display: 'block', marginBottom: '6px' }}>
+                        Message
+                      </label>
+                      <textarea
+                        id="contact-message"
+                        required
+                        rows={4}
+                        placeholder="What's on your mind?"
+                        value={form.message}
+                        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                        style={{ ...inputStyle, resize: 'none' }}
+                      />
+                    </div>
+                    {status === 'error' && (
+                      <p style={{ fontSize: '12px', color: '#e05a3a' }}>Something went wrong. Please try again.</p>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={status === 'sending'}
+                      style={{
+                        padding: '12px 24px',
+                        background: 'linear-gradient(135deg, #c0392b, #e05a3a)',
+                        border: 'none',
+                        borderRadius: '0',
+                        color: '#ffffff',
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        cursor: status === 'sending' ? 'not-allowed' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        opacity: status === 'sending' ? 0.7 : 1,
+                        transition: 'opacity 0.2s ease',
+                      }}
+                    >
+                      <Mail className="w-4 h-4" />
+                      {status === 'sending' ? 'Sending…' : 'Send Message'}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </motion.div>
-
         </div>
 
         {/* Back to top */}
